@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cp17hg625yex"]
+
+[ext_resource type="PackedScene" uid="uid://dmj1es5b4367j" path="res://scenes/player/player.tscn" id="1_k8tay"]
+[ext_resource type="PackedScene" uid="uid://cv7mqhlapakq5" path="res://scenes/enemies/enemy_base.tscn" id="2_oxjrw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rx0xw"]
+size = Vector2(1293, 70)
+
+[node name="World" type="Node2D" unique_id=1866397719]
+
+[node name="PlayerBody" parent="." unique_id=699607311 instance=ExtResource("1_k8tay")]
+position = Vector2(249, 306)
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=771894412]
+position = Vector2(-3, 658)
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=1672338607]
+position = Vector2(637, 25)
+shape = SubResource("RectangleShape2D_rx0xw")
+
+[node name="EnemyBase" parent="." unique_id=369489654 instance=ExtResource("2_oxjrw")]
+position = Vector2(1131, 477)
