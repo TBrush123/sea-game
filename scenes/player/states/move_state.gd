@@ -7,6 +7,11 @@ func enter() -> void:
 func physics_update(delta: float) -> void:
 	var direction = Input.get_axis("move_left", "move_right")
 
+	if Input.is_action_just_pressed("tongue_attack") and \
+		MutationManager.has_mutation(MutationManager.mutation_type.TONGUE):
+			state_machine.transition_to("TongueState")
+			return
+
 	if Input.is_action_just_pressed("dash") and player.can_dash and \
 		MutationManager.has_mutation(MutationManager.mutation_type.DASH):
 			state_machine.transition_to("DashState")

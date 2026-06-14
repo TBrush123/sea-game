@@ -33,7 +33,7 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_evjv1"]
 radius = 63.0
-height = 128.0
+height = 164.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_evjv1"]
 size = Vector2(266, 154)
@@ -51,7 +51,13 @@ point_count = 4
 [sub_resource type="CurveTexture" id="CurveTexture_0jp6v"]
 curve = SubResource("Curve_6flps")
 
+[sub_resource type="Curve" id="Curve_0jp6v"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="CurveTexture" id="CurveTexture_qudvl"]
+curve = SubResource("Curve_0jp6v")
 
 [sub_resource type="Curve" id="Curve_oansv"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.88796675, 0.8988764), -0.72904104, -0.72904104, 0, 0, Vector2(0.98340243, 0.5842697), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -75,6 +81,7 @@ alpha_curve = SubResource("CurveTexture_0jp6v")
 hue_variation_curve = SubResource("CurveTexture_qudvl")
 
 [node name="EnemyBase" type="CharacterBody2D" unique_id=369489654 groups=["enemy"]]
+collision_layer = 4
 script = ExtResource("1_qty17")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1928482650]
@@ -86,6 +93,8 @@ shape = SubResource("CapsuleShape2D_evjv1")
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=886923353 node_paths=PackedStringArray("damage_source")]
 position = Vector2(-87, 0)
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("2_pkqou")
 knockback_force = 400.0
 damage_source = NodePath("..")
@@ -94,8 +103,11 @@ metadata/_custom_type_script = "uid://dl6eom082crip"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=592327520]
 position = Vector2(-54, -2)
 shape = SubResource("RectangleShape2D_evjv1")
+disabled = true
 
 [node name="DetectionArea" type="Area2D" parent="." unique_id=556372997]
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="DetectionArea" unique_id=648731452]
 position = Vector2(0, 1.5)

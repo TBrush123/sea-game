@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://csoei516a0bs1" path="res://scenes/player/states/dash_state.gd" id="9_genst"]
 [ext_resource type="Texture2D" uid="uid://opv4t2ae5omd" path="res://assets/idle/3.png" id="9_gx1jg"]
 [ext_resource type="Texture2D" uid="uid://boflb7gh7apr0" path="res://assets/jump/8.png" id="9_iqsei"]
+[ext_resource type="Script" uid="uid://c6d7i1hifvrit" path="res://scenes/player/states/tongue_state.gd" id="10_rw8a5"]
 [ext_resource type="Texture2D" uid="uid://c452d37vfrjt" path="res://assets/jump/9.png" id="10_tffgl"]
 [ext_resource type="Texture2D" uid="uid://p7trqqpnaqbq" path="res://assets/idle/4.png" id="10_ugbui"]
 [ext_resource type="Texture2D" uid="uid://gut2ixbni6va" path="res://assets/attack/4.png" id="10_wva7c"]
@@ -44,6 +45,9 @@
 [ext_resource type="Script" uid="uid://d3l88i51tj4l5" path="res://scenes/player/camera_shake.gd" id="41_vo27k"]
 [ext_resource type="Script" uid="uid://droecq0na1gb" path="res://scenes/player/dash_hitbox.gd" id="43_niom3"]
 [ext_resource type="Texture2D" uid="uid://o6yr21x0cny1" path="res://assets/misc/dash_particle.png" id="43_ttakn"]
+[ext_resource type="Script" uid="uid://c07lkve157ipa" path="res://scenes/player/tongue_hitbox.gd" id="46_iwuka"]
+[ext_resource type="Shader" uid="uid://c7k2qwh4kruuq" path="res://scenes/player/tongue_reveal.gdshader" id="47_ds1xl"]
+[ext_resource type="Texture2D" uid="uid://crub5hfqontjx" path="res://icon.svg" id="47_hyqqp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_75vfm"]
 animations = [{
@@ -239,13 +243,23 @@ color_ramp = SubResource("GradientTexture1D_rw8a5")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vo27k"]
 size = Vector2(328, 177)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1u1sw"]
+shader = ExtResource("47_ds1xl")
+shader_parameter/reveal_amount = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ds1xl"]
+size = Vector2(20, 294.005)
+
 [node name="PlayerBody" type="CharacterBody2D" unique_id=699607311 groups=["player"]]
-collision_layer = 3
+collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_dovo2")
 speed = 400.0
 jump_velocity = -1000.0
+gravity = 1200.0
 coyote_time = 0.2
+tongue_max_damage = 3
+tongue_max_charge_time = 1.5
 
 [node name="StateMachine" type="Node" parent="." unique_id=1141414424 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_8qxvo")
@@ -272,6 +286,9 @@ script = ExtResource("8_7obkq")
 [node name="DashState" type="Node" parent="StateMachine" unique_id=60701353]
 script = ExtResource("9_genst")
 
+[node name="TongueState" type="Node" parent="StateMachine" unique_id=1129384687]
+script = ExtResource("10_rw8a5")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1132529601]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_75vfm")
@@ -284,6 +301,8 @@ shape = SubResource("RectangleShape2D_7obkq")
 
 [node name="BasicAttackHitbox" type="Area2D" parent="." unique_id=394788549 node_paths=PackedStringArray("damage_source")]
 position = Vector2(160, 5)
+collision_layer = 2
+collision_mask = 5
 monitoring = false
 script = ExtResource("38_5q8fn")
 damage_source = NodePath("..")
@@ -310,10 +329,35 @@ lifetime = 0.3
 process_material = SubResource("ParticleProcessMaterial_ttakn")
 
 [node name="DashHitbox" type="Area2D" parent="." unique_id=1426368154]
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("43_niom3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DashHitbox" unique_id=1048335417]
 position = Vector2(-37, 15.5)
 shape = SubResource("RectangleShape2D_vo27k")
-disabled = true
 debug_color = Color(0, 0.636041, 0.41370875, 0.41960785)
+
+[node name="TummyMask" type="Sprite2D" parent="." unique_id=2088388252]
+clip_children = 1
+position = Vector2(589, 45)
+scale = Vector2(9.759998, 1)
+texture = ExtResource("47_hyqqp")
+
+[node name="TongueSprite" type="Sprite2D" parent="TummyMask" unique_id=1736889924]
+visible = false
+material = SubResource("ShaderMaterial_1u1sw")
+position = Vector2(-120.389366, -20)
+scale = Vector2(1, 0.52)
+texture = ExtResource("47_hyqqp")
+
+[node name="TongueHitbox" type="Area2D" parent="." unique_id=1581850517]
+rotation = 0.0004187242
+scale = Vector2(1, 2.1600006)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("46_iwuka")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TongueHitbox" unique_id=74677022]
+shape = SubResource("RectangleShape2D_ds1xl")
+debug_color = Color(0.0004250186, 0, 0.28972936, 0.41960785)

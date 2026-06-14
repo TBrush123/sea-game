@@ -1,12 +1,14 @@
 extends State
 
-const SPEED = 150.0
+@export var windup_delay: float = 0.1
+var attack_finished: bool = false
 
 func enter() -> void:
 	player.sprite.play("attack")
-	player.basic_attack_hitbox.enable()
 	player.velocity.x = 0
 	player.velocity.y = 0
+
+	enable_hitbox_delayed(player.basic_attack_hitbox, windup_delay)
 
 func exit() -> void:
 	player.basic_attack_hitbox.disable()

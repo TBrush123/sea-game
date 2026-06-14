@@ -7,6 +7,8 @@ extends CharacterBody2D
 @onready var hurt_sfx: AudioStreamPlayer2D = $HurtSFX
 @onready var dash_hitbox: Area2D = $DashHitbox
 @onready var dash_particles: GPUParticles2D = $DashParticles
+@onready var tongue_sprite: Sprite2D = $TummyMask/TongueSprite
+@onready var tongue_hitbox: Area2D = $TongueHitbox
 
 @export var speed: float = 200.0
 @export var jump_velocity: float = -670.0
@@ -16,6 +18,10 @@ extends CharacterBody2D
 @export var dash_speed: float = 1000.0
 @export var dash_duration: float = 0.18
 @export var dash_cooldown: float = 0.4
+@export var tongue_min_damage: int = 1
+@export var tongue_max_damage: int = 4
+@export var tongue_max_charge_time: float = 1.0
+@export var tongue_speed: float = 250.0
 
 var can_dash: bool = true
 var camera: Camera2D

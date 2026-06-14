@@ -1,13 +1,16 @@
 extends State
 
+@export var windup_delay: float = 0.08
 var attack_done: bool = false
+
 
 func enter() -> void:
 	player.sprite.play("attack")
 	player.velocity.x = 0
 	attack_done = false
-	player.hitbox.enable()
 	player.sprite.animation_finished.connect(_on_anim_finished)
+
+	enable_hitbox_delayed(player.hitbox, windup_delay)
 
 func exit() -> void:
 	player.hitbox.disable()

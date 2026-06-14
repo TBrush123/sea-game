@@ -5,6 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://mhk7ai1jtttm" path="res://scenes/windows/main_menu_options_window.tscn" id="3_0jpat"]
 [ext_resource type="PackedScene" uid="uid://dnaejbfe1nvn1" path="res://scenes/windows/main_menu_credits_window.tscn" id="4_m0ubd"]
 [ext_resource type="PackedScene" uid="uid://cwt4p3bufkke5" path="res://addons/maaacks_game_template/base/nodes/windows/confirmation_overlaid_window.tscn" id="5_627ab"]
+[ext_resource type="Texture2D" uid="uid://bxucq7ou4leax" path="res://assets/menu/upper_arm.png" id="6_0jpat"]
+[ext_resource type="Script" uid="uid://c1pb78hyyqqd4" path="res://scenes/menus/main_menu/arm_pivot.gd" id="6_627ab"]
+[ext_resource type="Texture2D" uid="uid://d2d7tqx8bme0p" path="res://assets/menu/blue_guy.png" id="6_x31ro"]
+[ext_resource type="Texture2D" uid="uid://bfmmmyuds4eak" path="res://assets/menu/forearm.png" id="7_m0ubd"]
 
 [node name="MainMenu" unique_id=1058120615 instance=ExtResource("1_ub2bi")]
 script = ExtResource("2_x31ro")
@@ -12,6 +16,29 @@ level_select_packed_scene = null
 confirm_new_game = true
 options_packed_scene = ExtResource("3_0jpat")
 credits_packed_scene = ExtResource("4_m0ubd")
+
+[node name="CharacterBody" type="Sprite2D" parent="." index="0" unique_id=154934719]
+position = Vector2(791, 407)
+scale = Vector2(2.4494836, 2.4494836)
+texture = ExtResource("6_x31ro")
+
+[node name="ArmPivot" type="Node2D" parent="CharacterBody" index="0" unique_id=2090078324]
+position = Vector2(77.15912, -20.004217)
+script = ExtResource("6_627ab")
+
+[node name="UpperArm" type="Sprite2D" parent="CharacterBody/ArmPivot" index="0" unique_id=1942406117]
+position = Vector2(-29.802193, 13.880474)
+texture = ExtResource("6_0jpat")
+
+[node name="Node2D" type="Node2D" parent="CharacterBody/ArmPivot/UpperArm" index="0" unique_id=314041226]
+position = Vector2(-31.843447, 4.0824933)
+
+[node name="Forearm" type="Sprite2D" parent="CharacterBody/ArmPivot/UpperArm/Node2D" index="0" unique_id=265979108]
+position = Vector2(-31.026949, 10.614482)
+texture = ExtResource("7_m0ubd")
+
+[node name="TitleLabel" parent="MenuContainer/TitleMargin/TitleContainer" parent_id_path=PackedInt32Array(556427956) index="0" unique_id=359406872]
+text = "Game Template"
 
 [node name="ContinueGameButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" parent_id_path=PackedInt32Array(2017477786) index="1" unique_id=2077321160]
 unique_name_in_owner = true
@@ -25,7 +52,7 @@ visible = false
 layout_mode = 2
 text = "Level Select"
 
-[node name="NewGameConfirmation" parent="." index="5" unique_id=613417993 instance=ExtResource("5_627ab")]
+[node name="NewGameConfirmation" parent="." index="6" unique_id=613417993 instance=ExtResource("5_627ab")]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(420, 200)

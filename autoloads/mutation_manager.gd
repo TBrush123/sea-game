@@ -2,11 +2,12 @@ extends Node
 
 signal added_mutation(mutation: mutation_type)
 
-var current_mutations: Array[mutation_type] = [mutation_type.BASE]
+var current_mutations: Array[mutation_type] = [mutation_type.BASE, mutation_type.DASH, mutation_type.TONGUE]
 
 enum mutation_type {
     BASE,
     DASH,
+    TONGUE,
 }
 
 func has_mutation(mutation: mutation_type) -> bool:

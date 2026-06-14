@@ -27,5 +27,6 @@ func physics_update(delta: float) -> void:
 		return
 
 	player.velocity.x = direction * chase_speed
+	player.apply_gravity(delta)
 	player.update_facing(direction)
 	player.move_and_slide()

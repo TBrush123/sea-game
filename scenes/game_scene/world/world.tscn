@@ -9,7 +9,7 @@ size = Vector2(1293, 70)
 [node name="World" type="Node2D" unique_id=1866397719]
 
 [node name="PlayerBody" parent="." unique_id=699607311 instance=ExtResource("1_k8tay")]
-position = Vector2(249, 306)
+position = Vector2(222, 313)
 
 [node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=771894412]
 position = Vector2(-3, 658)
@@ -20,4 +20,4 @@ position = Vector2(637, 25)
 shape = SubResource("RectangleShape2D_rx0xw")
 
 [node name="EnemyBase" parent="." unique_id=369489654 instance=ExtResource("2_oxjrw")]
-position = Vector2(1131, 477)
+position = Vector2(1008, 440)
