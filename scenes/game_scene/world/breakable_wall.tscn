@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://djaocvr58nf4e"]
+
+[ext_resource type="Texture2D" uid="uid://crub5hfqontjx" path="res://icon.svg" id="1_3p4ib"]
+[ext_resource type="Script" uid="uid://clef13b57tldv" path="res://scenes/game_scene/world/breakable_wall.gd" id="1_yrfrq"]
+[ext_resource type="Script" uid="uid://btgmopseda1yg" path="res://scenes/game_scene/world/break_detector.gd" id="3_77v1g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yrfrq"]
+size = Vector2(65, 564)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_77v1g"]
+size = Vector2(107, 597)
+
+[sub_resource type="Gradient" id="Gradient_yrfrq"]
+offsets = PackedFloat32Array(0.7813954, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_77v1g"]
+gradient = SubResource("Gradient_yrfrq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yrfrq"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 500.0
+initial_velocity_max = 698.92
+gravity = Vector3(0, 1400, 0)
+damping_min = 30.000002
+damping_max = 60.000004
+scale_min = 0.099999994
+scale_max = 0.19999999
+color_ramp = SubResource("GradientTexture1D_77v1g")
+
+[node name="BreakableWall" type="StaticBody2D" unique_id=1335956177]
+script = ExtResource("1_yrfrq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1213655747]
+scale = Vector2(0.515625, 4.421875)
+texture = ExtResource("1_3p4ib")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1615021305]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_yrfrq")
+
+[node name="BreakDetector" type="Area2D" parent="." unique_id=578685]
+collision_layer = 8
+script = ExtResource("3_77v1g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BreakDetector" unique_id=1496359120]
+position = Vector2(1.5, -1.5)
+shape = SubResource("RectangleShape2D_77v1g")
+debug_color = Color(0.8318116, 0.39231917, 0, 0.41960785)
+
+[node name="WallBreakParticles" type="GPUParticles2D" parent="." unique_id=749820458]
+emitting = false
+amount = 20
+texture = ExtResource("1_3p4ib")
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+collision_base_size = 10.0
+process_material = SubResource("ParticleProcessMaterial_yrfrq")

@@ -1,29 +1,31 @@
-class_name EnemyBase
+class_name SuperCoolBoss
 extends CharacterBody2D
 
-@export var max_health: int = 3
+@export var max_health: int = 20
 @export var move_speed: float = 40.0
 @export var attack_damage: int = 1
 @export var gravity: float = 900
 
-@export var raycast: RayCast2D
-
 var health: int
+var phase: int = 1
 var facing_direction: int = -1
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var hitbox: Hitbox = $Hitbox
+@onready var slam_hitbox: Hitbox = $Hitbox
 @onready var state_machine: Node = $StateMachine
-@onready var detection_area: Area2D = $DetectionArea
-@onready var alert_sprite: Sprite2D = $AlertSprite
-@onready var alert_sfx: AudioStreamPlayer2D = $AlertSFX
+@onready var weak_point_hurtbox: Area2D = $WeakPointHurtbox
+@onready var armor_hurtbox: Area2D = $ArmorHurtbox
 @onready var death_particles: GPUParticles2D = $DeathParticles
 
 func _ready() -> void:
 	health = max_health
+    weak_point_hurtbox.monitoring = false
 
 func apply_gravity(delta: float, gravity_scale: float = 1.0) -> void:
 	velocity.y += gravity * delta * gravity_scale
+
+func _physics_process(delta: float) -> void:
+    apply_gravity(delta)
 
 func take_hit(damage: int, knockback: Vector2) -> void:
 	health -= damage
@@ -41,11 +43,32 @@ func take_hit(damage: int, knockback: Vector2) -> void:
 		player.camera.shake(4.0)
 		HitStop.freeze()
 	else:
-		player.camera.shake(8.0)
+		player.camera.shake(20.0)
 		HitStop.freeze(0.12, 0.02)
+
+	if health <= int(max_health * phase2_threshold) and phase == 1:
+		state_machine.transition_to("PhaseTransitionState")
+		return
+	
+	if health <= 0:
+		die()
+		return 
+	
+	if phase == 2:
+		state_machine.transition_to("HurtState")
+
+func take_weak_point_hit(damage: int, knockback: Vector2) -> void:
+	health -= damage
+	HitStop.freeze(0.1, 0.05)
+	get_viewport().get_camera_2d().shake(6.0)
+
+	modulate = Color.RED
+	var tween = create_tween()
+	tween.tween_property(self, "modulate", Color.WHITE, 0.2)
 
 	if health <= 0:
 		die()
+		return
 
 func die() -> void:
 	death_particles.global_position = global_position
@@ -60,9 +83,7 @@ func update_facing(direction: float) -> void:
 	if direction != 0 and direction != facing_direction:
 		facing_direction = sign(direction)
 		sprite.flip_h = facing_direction < 0
-		hitbox.position *= -1
-		detection_area.scale.x *= -1
-		raycast.target_position.x *= -1
+		slam_hitbox.position *= -1
 	
 func stun(duration: float) -> void:
 	if state_machine.current_state.name != "StunState":

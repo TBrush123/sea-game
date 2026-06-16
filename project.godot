@@ -24,6 +24,7 @@ ProjectUISoundController="*res://addons/maaacks_game_template/base/nodes/autoloa
 Dialogic="*uid://ds2q0uclmolvu"
 HitStop="*uid://tw13qg8au5we"
 MutationManager="*uid://dc5r0imfe8jrm"
+GameStates="*uid://ceuk7yibdqcmm"
 
 [dialogic]
 

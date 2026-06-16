@@ -24,7 +24,7 @@ func enter() -> void:
 	player.set_collision_mask_value(3, false)
 
 	HitStop.freeze(0.04, 0.1)
-	get_viewport().get_camera_2d().shake(3.0)
+	get_viewport().get_camera_2d().shake(6.0)
 
 	player.can_dash = false
 

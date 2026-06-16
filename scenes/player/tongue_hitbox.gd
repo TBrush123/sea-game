@@ -14,8 +14,8 @@ func _on_body_entered(body: Node2D) -> void:
     if body.has_method("take_hit") and body.is_in_group("enemy"):
         var direction = sign(body.global_position.x - global_position.x)
         body.take_hit(damage, Vector2(direction, 0) * knockback_force)
-        HitStop.freeze(0.15, 0.1)
-        get_viewport().get_camera_2d().shake(8.0)
+        HitStop.freeze(0.06 * damage, 0.3 / damage)
+        get_viewport().get_camera_2d().shake(16.0)
 
 func _on_area_entered(area: Area2D) -> void:
     if can_break_walls and area.has_method("break_wall"):

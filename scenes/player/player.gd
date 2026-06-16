@@ -9,6 +9,7 @@ extends CharacterBody2D
 @onready var dash_particles: GPUParticles2D = $DashParticles
 @onready var tongue_sprite: Sprite2D = $TummyMask/TongueSprite
 @onready var tongue_hitbox: Area2D = $TongueHitbox
+@onready var tummy_mask: Sprite2D = $TummyMask
 
 @export var speed: float = 200.0
 @export var jump_velocity: float = -670.0
@@ -54,6 +55,10 @@ func update_facing(direction: float) -> void:
 		facing_direction = sign(direction)
 		sprite.flip_h = facing_direction < 0
 		basic_attack_hitbox.position *= -1
+		tummy_mask.position.x *= -1
+		tongue_sprite.position.x *= -1
+		tongue_sprite.flip_h = facing_direction < 0
+
 	
 func set_movement_locked(locked: bool) -> void:
 	state_machine.set_physics_process(locked == false)
@@ -69,12 +74,23 @@ func take_hit(damage: int, knockback: Vector2) -> void:
 	velocity += knockback
 	print("knockback:", knockback, " velocity:", velocity)
 	state_machine.transition_to("HurtState")
-	camera.shake()
+	camera.shake(8.0)
 
 
 	if health <= 0:
 		die()
 
 func die() -> void:
-	#Todo
-	pass
+	is_invincible = true
+	velocity = Vector2.ZERO
+	set_movement_locked(true)
+	sprite.modulate = Color.WHITE
+
+	await get_tree().create_timer(0.6).timeout
+
+	GameStates.respawn_player(self)
+
+	set_movement_locked(false)
+	is_invincible = false
+	state_machine.transition_to("IdleState")
+

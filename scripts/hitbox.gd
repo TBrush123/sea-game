@@ -15,6 +15,7 @@ func _on_body_entered(body: Node2D) -> void:
         body.take_hit(damage, direction * knockback_force)
 
 func enable() -> void:
+    print("I AM ATTACKING")
     monitoring = true
 
 func disable() -> void:

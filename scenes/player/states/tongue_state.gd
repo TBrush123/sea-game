@@ -10,6 +10,7 @@ var is_charging: bool = true
 var lunge_timer: float = 0.0
 var current_damage: int = 0
 var just_entered: bool = true
+var full_charge_tween: Tween = null
 
 func enter() -> void:
 	#player.sprite.play("tongue_charge")
@@ -17,8 +18,10 @@ func enter() -> void:
 	is_charging = true
 	player.velocity.x = 0
 	just_entered = true
+	full_charge_tween = null
 
 func exit() -> void:
+	_stop_blink()
 	player.tongue_hitbox.disable()
 	player.tongue_sprite.hide()
 	lunge_timer = 0.0
@@ -36,13 +39,21 @@ func physics_update(delta: float) -> void:
 		player.move_and_slide()
 
 		var charge_ratio = charge_time / player.tongue_max_charge_time
-		player.sprite.modulate = Color(1.0, 1.0 - charge_ratio * 0.5, 1.0 - charge_ratio * 0.5)
+
+		if charge_time < player.tongue_max_charge_time:
+			player.sprite.modulate = Color(1.0, 1.0 - charge_ratio * 0.5, 1.0 - charge_ratio * 0.5)
+		elif full_charge_tween == null:
+			full_charge_tween = player.create_tween().set_loops()
+			full_charge_tween.tween_property(player, "modulate:v", 15, 0.1)
+			full_charge_tween.tween_property(player, "modulate:v", 1, 0.1)
 
 		var released = not just_entered and (Input.is_action_just_released("tongue_attack") or not Input.is_action_pressed("tongue_attack"))
 
 		if released and charge_time >= min_charge_to_fire:
+			_stop_blink()
 			_gallop_on()
 		elif released:
+			_stop_blink()
 			await get_tree().create_timer(min_charge_to_fire - charge_time).timeout
 			if is_charging:
 				_gallop_on()
@@ -60,6 +71,11 @@ func physics_update(delta: float) -> void:
 			state_machine.transition_to("IdleState")
 		else:
 			state_machine.transition_to("FallState")
+func _stop_blink() -> void:
+	if full_charge_tween:
+		full_charge_tween.kill()
+		full_charge_tween = null
+	player.modulate = Color.WHITE
 
 func _gallop_on() -> void:
 	is_charging = false

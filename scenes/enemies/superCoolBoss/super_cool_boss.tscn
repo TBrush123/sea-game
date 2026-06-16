@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://bjtunhnpq3hld"]
+
+[ext_resource type="Texture2D" uid="uid://crub5hfqontjx" path="res://icon.svg" id="1_byi80"]
+[ext_resource type="Script" uid="uid://b0booe1hhg2k7" path="res://scenes/enemies/superCoolBoss/super_cool_boss.gd" id="1_fl5py"]
+[ext_resource type="Script" uid="uid://dl6eom082crip" path="res://scripts/hitbox.gd" id="2_esgye"]
+[ext_resource type="Script" uid="uid://cq0qe3lhrmeco" path="res://scripts/state_machine.gd" id="4_4h52x"]
+[ext_resource type="Script" uid="uid://dpew030car50w" path="res://scenes/enemies/superCoolBoss/telegraph_state.gd" id="5_4h52x"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fl5py"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_byi80")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4h52x"]
+size = Vector2(318, 314)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ncple"]
+size = Vector2(396, 398)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ou8a"]
+size = Vector2(444, 450)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qq8eo"]
+size = Vector2(332, 346)
+
+[node name="SuperCoolBoss" type="CharacterBody2D" unique_id=1491804352]
+script = ExtResource("1_fl5py")
+max_health = null
+move_speed = null
+attack_damage = null
+gravity = null
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=890219416]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_fl5py")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1182958374]
+shape = SubResource("RectangleShape2D_4h52x")
+
+[node name="WeakPointHurtbox" type="Area2D" parent="." unique_id=1829330718]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WeakPointHurtbox" unique_id=676238442]
+shape = SubResource("RectangleShape2D_ncple")
+debug_color = Color(0.8296844, 0.39438507, 0, 0.41960785)
+
+[node name="ArmorHurtbox" type="Area2D" parent="." unique_id=262303959]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ArmorHurtbox" unique_id=1688712114]
+shape = SubResource("RectangleShape2D_6ou8a")
+debug_color = Color(0.3838522, 0.6359189, 0.71590877, 0.41960785)
+
+[node name="SlamHitbox" type="Area2D" parent="." unique_id=1242596887]
+position = Vector2(-217, 165)
+script = ExtResource("2_esgye")
+metadata/_custom_type_script = "uid://dl6eom082crip"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SlamHitbox" unique_id=541617730]
+shape = SubResource("RectangleShape2D_qq8eo")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=2088781245]
+position = Vector2(-271, 167)
+
+[node name="StateMachine" type="Node" parent="." unique_id=158490625]
+script = ExtResource("4_4h52x")
+metadata/_custom_type_script = "uid://cq0qe3lhrmeco"
+
+[node name="TelegraphState" type="Node" parent="StateMachine" unique_id=1527548083]
+script = ExtResource("5_4h52x")

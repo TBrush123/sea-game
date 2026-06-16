@@ -1,0 +1,146 @@
+[gd_scene format=3 uid="uid://b3uphxxt3hwh0"]
+
+[ext_resource type="Script" uid="uid://dwqi5oyepmvls" path="res://scenes/enemies/enemy_base.gd" id="1_vmihk"]
+[ext_resource type="Script" uid="uid://cq0qe3lhrmeco" path="res://scripts/state_machine.gd" id="2_fs6k0"]
+[ext_resource type="Texture2D" uid="uid://crub5hfqontjx" path="res://icon.svg" id="2_oi0c7"]
+[ext_resource type="Script" uid="uid://dvup5jwctx8xe" path="res://scenes/enemies/states/hurt_state.gd" id="4_5u3cr"]
+[ext_resource type="Script" uid="uid://c4giyqerom7y3" path="res://scenes/enemies/SwordFish/telegraph_state.gd" id="4_6cokt"]
+[ext_resource type="Script" uid="uid://diacfh8mbsu5x" path="res://scenes/enemies/SwordFish/patrol_state.gd" id="4_oi0c7"]
+[ext_resource type="Script" uid="uid://cfq6g0i4ov5nl" path="res://scenes/enemies/SwordFish/lunge_state.gd" id="5_6cokt"]
+[ext_resource type="Script" uid="uid://dl6eom082crip" path="res://scripts/hitbox.gd" id="7_e6wu5"]
+[ext_resource type="Script" uid="uid://b08tq18cyd2ii" path="res://scenes/enemies/contact_damage.gd" id="8_bfj1j"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o0enl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_oi0c7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6cokt"]
+size = Vector2(2119.5, 288)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bfj1j"]
+size = Vector2(348, 312)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oi0c7"]
+size = Vector2(326, 326)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o0enl"]
+size = Vector2(250, 258)
+
+[sub_resource type="Curve" id="Curve_oi0c7"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.2572614, 0.94382024), -0.25789255, -0.25789255, 0, 0, Vector2(0.7178423, 0.23595512), -1.3539324, -1.3539324, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_0jp6v"]
+curve = SubResource("Curve_oi0c7")
+
+[sub_resource type="Curve" id="Curve_o0enl"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qudvl"]
+curve = SubResource("Curve_o0enl")
+
+[sub_resource type="Curve" id="Curve_gviw6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.88796675, 0.8988764), -0.72904104, -0.72904104, 0, 0, Vector2(0.98340243, 0.5842697), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_6flps"]
+curve = SubResource("Curve_gviw6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n8lcg"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 200.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, 0, 0)
+damping_min = 80.0
+damping_max = 100.00001
+scale_min = 0.099999994
+scale_max = 0.19999999
+scale_curve = SubResource("CurveTexture_6flps")
+alpha_curve = SubResource("CurveTexture_0jp6v")
+hue_variation_curve = SubResource("CurveTexture_qudvl")
+
+[node name="SwordFish" type="CharacterBody2D" unique_id=114974541 node_paths=PackedStringArray("raycast") groups=["enemy"]]
+collision_layer = 4
+script = ExtResource("1_vmihk")
+raycast = NodePath("RayCast2D")
+metadata/_custom_type_script = "uid://dwqi5oyepmvls"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1163966953]
+scale = Vector2(2.4375, 2.4375)
+sprite_frames = SubResource("SpriteFrames_o0enl")
+
+[node name="StateMachine" type="Node" parent="." unique_id=766617862 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_fs6k0")
+initial_state = NodePath("PatrolState")
+metadata/_custom_type_script = "uid://cq0qe3lhrmeco"
+
+[node name="PatrolState" type="Node" parent="StateMachine" unique_id=1437382314]
+script = ExtResource("4_oi0c7")
+
+[node name="TelegraphState" type="Node" parent="StateMachine" unique_id=1538721494]
+script = ExtResource("4_6cokt")
+
+[node name="LungeState" type="Node" parent="StateMachine" unique_id=288076973]
+script = ExtResource("5_6cokt")
+
+[node name="HurtState" type="Node" parent="StateMachine" unique_id=1200837409]
+script = ExtResource("4_5u3cr")
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=970779715]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1148438288]
+position = Vector2(-908, 0)
+shape = SubResource("RectangleShape2D_6cokt")
+debug_color = Color(0.41250443, 0.46468168, 1, 0.41960785)
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1405880279 node_paths=PackedStringArray("damage_source")]
+position = Vector2(-190, 0)
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("7_e6wu5")
+knockback_force = 1200.0
+damage_source = NodePath("..")
+metadata/_custom_type_script = "uid://dl6eom082crip"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1550618468]
+position = Vector2(-21, 0)
+shape = SubResource("RectangleShape2D_bfj1j")
+
+[node name="ContactDamage" type="Area2D" parent="." unique_id=1016204389]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("8_bfj1j")
+metadata/_custom_type_script = "uid://b08tq18cyd2ii"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactDamage" unique_id=651773727]
+shape = SubResource("RectangleShape2D_oi0c7")
+debug_color = Color(0.98558336, 0, 0.3369638, 0.41960785)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1259363343]
+shape = SubResource("RectangleShape2D_o0enl")
+
+[node name="DeathParticles" type="GPUParticles2D" parent="." unique_id=764320907]
+modulate = Color(1, 0, 0, 1)
+emitting = false
+amount = 64
+texture = ExtResource("2_oi0c7")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_n8lcg")
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=505427922]
+target_position = Vector2(-1968, 0)
+collision_mask = 11

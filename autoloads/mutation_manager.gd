@@ -20,3 +20,4 @@ func add_mutation(mutation: mutation_type) -> void:
 func remove_mutation(mutation: mutation_type) -> void:
     if mutation in current_mutations:
         current_mutations.erase(mutation)
+
