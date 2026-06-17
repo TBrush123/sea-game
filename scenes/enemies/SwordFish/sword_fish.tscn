@@ -1,37 +1,62 @@
 [gd_scene format=3 uid="uid://b3uphxxt3hwh0"]
 
 [ext_resource type="Script" uid="uid://dwqi5oyepmvls" path="res://scenes/enemies/enemy_base.gd" id="1_vmihk"]
+[ext_resource type="Texture2D" uid="uid://crrd2lw3d5y4f" path="res://assets/enemy/swordfish/f_walk/frame0000.png" id="2_bada8"]
 [ext_resource type="Script" uid="uid://cq0qe3lhrmeco" path="res://scripts/state_machine.gd" id="2_fs6k0"]
 [ext_resource type="Texture2D" uid="uid://crub5hfqontjx" path="res://icon.svg" id="2_oi0c7"]
+[ext_resource type="Texture2D" uid="uid://640j63i0dpse" path="res://assets/enemy/swordfish/f_walk/frame0001.png" id="3_6wy1d"]
 [ext_resource type="Script" uid="uid://dvup5jwctx8xe" path="res://scenes/enemies/states/hurt_state.gd" id="4_5u3cr"]
 [ext_resource type="Script" uid="uid://c4giyqerom7y3" path="res://scenes/enemies/SwordFish/telegraph_state.gd" id="4_6cokt"]
+[ext_resource type="Texture2D" uid="uid://bgqu00pnrya2h" path="res://assets/enemy/swordfish/f_walk/frame0002.png" id="4_b3e41"]
 [ext_resource type="Script" uid="uid://diacfh8mbsu5x" path="res://scenes/enemies/SwordFish/patrol_state.gd" id="4_oi0c7"]
 [ext_resource type="Script" uid="uid://cfq6g0i4ov5nl" path="res://scenes/enemies/SwordFish/lunge_state.gd" id="5_6cokt"]
+[ext_resource type="Texture2D" uid="uid://defsuhpmf55y8" path="res://assets/enemy/swordfish/f_walk/frame0003.png" id="5_61chp"]
+[ext_resource type="Texture2D" uid="uid://djpqk726d2frp" path="res://assets/enemy/swordfish/f_walk/frame0004.png" id="6_61chp"]
 [ext_resource type="Script" uid="uid://dl6eom082crip" path="res://scripts/hitbox.gd" id="7_e6wu5"]
+[ext_resource type="Texture2D" uid="uid://bgm8iuwa7e433" path="res://assets/enemy/swordfish/f_walk/frame0005.png" id="7_em02r"]
 [ext_resource type="Script" uid="uid://b08tq18cyd2ii" path="res://scenes/enemies/contact_damage.gd" id="8_bfj1j"]
+[ext_resource type="Texture2D" uid="uid://4vlpu7xcftpi" path="res://assets/enemy/swordfish/f_walk/frame0006.png" id="8_ikb0t"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o0enl"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_oi0c7")
+"texture": ExtResource("2_bada8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6wy1d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_b3e41")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_61chp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_61chp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_em02r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ikb0t")
 }],
 "loop": true,
-"name": &"default",
-"speed": 5.0
+"name": &"f_walk",
+"speed": 6.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6cokt"]
-size = Vector2(2119.5, 288)
+size = Vector2(2128.75, 448)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bfj1j"]
 size = Vector2(348, 312)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oi0c7"]
-size = Vector2(326, 326)
+size = Vector2(326, 474)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o0enl"]
-size = Vector2(250, 258)
+size = Vector2(250, 397)
 
 [sub_resource type="Curve" id="Curve_oi0c7"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.2572614, 0.94382024), -0.25789255, -0.25789255, 0, 0, Vector2(0.7178423, 0.23595512), -1.3539324, -1.3539324, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -76,8 +101,10 @@ raycast = NodePath("RayCast2D")
 metadata/_custom_type_script = "uid://dwqi5oyepmvls"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1163966953]
-scale = Vector2(2.4375, 2.4375)
+position = Vector2(0, -87)
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_o0enl")
+animation = &"f_walk"
 
 [node name="StateMachine" type="Node" parent="." unique_id=766617862 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_fs6k0")
@@ -101,7 +128,7 @@ collision_layer = 4
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1148438288]
-position = Vector2(-908, 0)
+position = Vector2(-903.375, -80)
 shape = SubResource("RectangleShape2D_6cokt")
 debug_color = Color(0.41250443, 0.46468168, 1, 0.41960785)
 
@@ -125,10 +152,12 @@ script = ExtResource("8_bfj1j")
 metadata/_custom_type_script = "uid://b08tq18cyd2ii"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ContactDamage" unique_id=651773727]
+position = Vector2(0, -74)
 shape = SubResource("RectangleShape2D_oi0c7")
 debug_color = Color(0.98558336, 0, 0.3369638, 0.41960785)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1259363343]
+position = Vector2(0, -69.5)
 shape = SubResource("RectangleShape2D_o0enl")
 
 [node name="DeathParticles" type="GPUParticles2D" parent="." unique_id=764320907]

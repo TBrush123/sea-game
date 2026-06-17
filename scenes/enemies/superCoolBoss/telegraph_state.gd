@@ -1,6 +1,6 @@
 extends State
 
-@export var telegraph_duration: float = 0.5
+@export var telegraph_duration: float = 1.2
 @export var next_state: String = "SlamState"
 
 var timer: float = 0.0
@@ -32,4 +32,7 @@ func physics_update(delta: float) -> void:
 	if timer < telegraph_duration:
 		timer += delta
 	else:
-		state_machine.transition_to("LungeState")
+		state_machine.transition_to(next_state)
+
+func _get_player() -> Node2D:
+	return get_tree().get_first_node_in_group("player")

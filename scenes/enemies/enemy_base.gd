@@ -18,6 +18,7 @@ var facing_direction: int = -1
 @onready var alert_sprite: Sprite2D = $AlertSprite
 @onready var alert_sfx: AudioStreamPlayer2D = $AlertSFX
 @onready var death_particles: GPUParticles2D = $DeathParticles
+@onready var flash_animation: AnimationPlayer = $AnimatedSprite2D/FlashAnimation
 
 func _ready() -> void:
 	health = max_health
@@ -43,9 +44,11 @@ func take_hit(damage: int, knockback: Vector2) -> void:
 	else:
 		player.camera.shake(8.0)
 		HitStop.freeze(0.12, 0.02)
-
+ 
 	if health <= 0:
 		die()
+	
+	flash_animation.play("hit_animation_enemy")
 
 func die() -> void:
 	death_particles.global_position = global_position
@@ -59,10 +62,11 @@ func die() -> void:
 func update_facing(direction: float) -> void:
 	if direction != 0 and direction != facing_direction:
 		facing_direction = sign(direction)
-		sprite.flip_h = facing_direction < 0
-		hitbox.position *= -1
+		sprite.flip_h = facing_direction > 0
+		hitbox.position.x *= -1
 		detection_area.scale.x *= -1
-		raycast.target_position.x *= -1
+		if raycast:
+			raycast.target_position.x *= -1
 	
 func stun(duration: float) -> void:
 	if state_machine.current_state.name != "StunState":

@@ -4,11 +4,12 @@ extends State
 @export var lunge_cooldown: float = 3.0
 
 var start_x: float
-var direction: int = 1
+var direction: int = -1
 var cooldown_timer: float = 0.0
 
 func enter() -> void:
-	#player.sprite.play("walk")
+	await player.ready
+	player.sprite.play("f_walk")
 	start_x = player.global_position.x
 	cooldown_timer = lunge_cooldown
 

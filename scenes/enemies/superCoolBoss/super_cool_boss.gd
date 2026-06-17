@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 @export var max_health: int = 20
 @export var move_speed: float = 40.0
-@export var attack_damage: int = 1
+@export var phase2_threshold: float = 0.5
 @export var gravity: float = 900
 
 var health: int
@@ -16,16 +16,17 @@ var facing_direction: int = -1
 @onready var weak_point_hurtbox: Area2D = $WeakPointHurtbox
 @onready var armor_hurtbox: Area2D = $ArmorHurtbox
 @onready var death_particles: GPUParticles2D = $DeathParticles
+@onready var shockwave_marker: Marker2D = $ShockwaveMarker
 
 func _ready() -> void:
 	health = max_health
-    weak_point_hurtbox.monitoring = false
+	weak_point_hurtbox.monitoring = false
 
 func apply_gravity(delta: float, gravity_scale: float = 1.0) -> void:
 	velocity.y += gravity * delta * gravity_scale
 
 func _physics_process(delta: float) -> void:
-    apply_gravity(delta)
+	apply_gravity(delta)
 
 func take_hit(damage: int, knockback: Vector2) -> void:
 	health -= damage

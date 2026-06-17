@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://c3u6hg1mcq1r1"]
+
+[ext_resource type="Script" uid="uid://ugfu2kroryuy" path="res://scenes/game_scene/buffs/ability_pickup.gd" id="1_ak6yw"]
+[ext_resource type="Resource" uid="uid://sirnk8vany0" path="res://dialogue/dialogues/dash_mutation.dtl" id="2_4kd04"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_om1o7"]
+size = Vector2(1204, 948)
+
+[node name="AbilityPickup" type="Area2D" unique_id=265110803]
+collision_mask = 2
+script = ExtResource("1_ak6yw")
+timeline = ExtResource("2_4kd04")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1768354086]
+shape = SubResource("RectangleShape2D_om1o7")

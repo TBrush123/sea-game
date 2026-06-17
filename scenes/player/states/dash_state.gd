@@ -1,14 +1,14 @@
 extends State
 
 @export var dash_speed: float = 3000.0
-@export var dash_duration: float = 0.18
+@export var dash_duration: float = 0.5
 
 var timer: float = 0.0
 var dash_direction: int = 1
 var was_in_air: bool = false
 
 func enter() -> void:
-	#player.sprite.play("dash")
+	player.sprite.play("dash1")
 	timer = 0.0
 	was_in_air = not player.is_on_floor()
 
@@ -22,9 +22,6 @@ func enter() -> void:
 	player.dash_particles.emitting = true
 
 	player.set_collision_mask_value(3, false)
-
-	HitStop.freeze(0.04, 0.1)
-	get_viewport().get_camera_2d().shake(6.0)
 
 	player.can_dash = false
 

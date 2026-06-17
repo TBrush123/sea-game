@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="DialogicStyle" format=3 uid="uid://crvbej20dsjo4"]
+
+[ext_resource type="Script" uid="uid://bwg6yncmh2cml" path="res://addons/dialogic/Resources/dialogic_style_layer.gd" id="1_xtlgr"]
+[ext_resource type="Script" uid="uid://dv08k6ljua6fm" path="res://addons/dialogic/Resources/dialogic_style.gd" id="2_pmyka"]
+[ext_resource type="PackedScene" uid="uid://c1k5m0w3r40xf" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_FullBackground/full_background_layer.tscn" id="2_qdhgu"]
+[ext_resource type="PackedScene" uid="uid://cy1y14inwkplb" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Portraits/vn_portrait_layer.tscn" id="3_qdhgu"]
+[ext_resource type="PackedScene" uid="uid://bquja8jyk8kbr" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Textbox/vn_textbox_layer.tscn" id="4_4yrm2"]
+
+[sub_resource type="Resource" id="Resource_qdhgu"]
+script = ExtResource("1_xtlgr")
+overrides = {
+"canvas_layer": "0.0",
+"global_bg_color": "Color(0.043945313, 0.16571034, 0.3515625, 1)",
+"global_font_color": "Color(1, 0.90600586, 0.7265625, 1)"
+}
+
+[sub_resource type="Resource" id="Resource_4yrm2"]
+script = ExtResource("1_xtlgr")
+scene = ExtResource("2_qdhgu")
+
+[sub_resource type="Resource" id="Resource_rddeu"]
+script = ExtResource("1_xtlgr")
+scene = ExtResource("3_qdhgu")
+
+[sub_resource type="Resource" id="Resource_bjsp0"]
+script = ExtResource("1_xtlgr")
+scene = ExtResource("4_4yrm2")
+overrides = {
+"box_size": "Vector2(1000, 150)",
+"name_label_box_offset": "Vector2(0, -30)",
+"name_label_custom_font_size": "48.0",
+"name_label_use_global_font": "false",
+"name_label_use_global_font_size": "false",
+"text_size": "24.0",
+"text_use_global_size": "false"
+}
+
+[resource]
+script = ExtResource("2_pmyka")
+name = "style"
+layer_list = Array[String](["10", "11", "12"])
+layer_info = {
+"": SubResource("Resource_qdhgu"),
+"10": SubResource("Resource_4yrm2"),
+"11": SubResource("Resource_rddeu"),
+"12": SubResource("Resource_bjsp0")
+}
+metadata/_latest_layer = "10"

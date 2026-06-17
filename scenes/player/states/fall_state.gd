@@ -3,6 +3,7 @@ extends State
 
 func enter() -> void:
 	player.sprite.play("fall")
+	player.sprite.pause()
 
 func physics_update(delta: float) -> void:
 	player.velocity.y += player.gravity * delta
@@ -31,6 +32,8 @@ func physics_update(delta: float) -> void:
 	player.move_and_slide()
 
 	if player.is_on_floor():
+		player.sprite.play()
+		await player.sprite.animation_finished
 		if direction != 0:
 			state_machine.transition_to("MoveState")
 		else:

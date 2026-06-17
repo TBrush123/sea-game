@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://c57bfcclsylhh"]
+
+[ext_resource type="Script" uid="uid://dbsknbav0l2hu" path="res://scenes/menus/tutorial/tutorial_prompt.gd" id="1_ssomp"]
+[ext_resource type="LabelSettings" uid="uid://b63jen7o8ascs" path="res://resources/themes/tutorial_font.tres" id="2_efen2"]
+
+[node name="TutorialPrompt" type="CanvasLayer" unique_id=1391538280 groups=["tutorial_prompt"]]
+script = ExtResource("1_ssomp")
+label_theme = ExtResource("2_efen2")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1711767315]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1244305261]
+layout_mode = 2
+
+[node name="ActionRow" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1606967066]
+layout_mode = 2
+
+[node name="KeyLabel" type="Label" parent="PanelContainer/VBoxContainer/ActionRow" unique_id=729608049]
+layout_mode = 2
+text = "[Space]"
+label_settings = ExtResource("2_efen2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="PanelContainer/VBoxContainer/ActionRow" unique_id=943097621]
+layout_mode = 2
+text = "- Jump"
+label_settings = ExtResource("2_efen2")
+horizontal_alignment = 1
+vertical_alignment = 1

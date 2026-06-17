@@ -1,14 +1,14 @@
 extends State
 
-@export var jump_cut_multiplier: float = 0.5
-
 func enter() -> void:
 	player.sprite.play("jump")
 	player.velocity.y = player.jump_velocity
 	player.coyote_timer = 0.0
 
 func physics_update(delta: float) -> void:
-	player.apply_gravity(delta)
+
+	if not Input.is_action_pressed("jump") and player.velocity.y < 0:
+		player.velocity.y = 0.0
 
 	if Input.is_action_just_pressed("tongue_attack") and \
 		MutationManager.has_mutation(MutationManager.mutation_type.TONGUE):
@@ -20,8 +20,6 @@ func physics_update(delta: float) -> void:
 		MutationManager.has_mutation(MutationManager.mutation_type.DASH):
 			state_machine.transition_to("DashState")
 			return
-	if Input.is_action_just_released("jump") and player.velocity.y < 0:
-		player.velocity.y *= jump_cut_multiplier
 
 	var direction = Input.get_axis("move_left", "move_right")
 	player.velocity.x = direction * player.speed
@@ -34,3 +32,4 @@ func physics_update(delta: float) -> void:
 	if player.velocity.y >= 0:
 		state_machine.transition_to("FallState")
 	
+	player.apply_gravity(delta)

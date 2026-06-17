@@ -10,6 +10,7 @@ extends CharacterBody2D
 @onready var tongue_sprite: Sprite2D = $TummyMask/TongueSprite
 @onready var tongue_hitbox: Area2D = $TongueHitbox
 @onready var tummy_mask: Sprite2D = $TummyMask
+@onready var flash_animation: AnimationPlayer = $AnimatedSprite2D/FlashAnimation
 
 @export var speed: float = 200.0
 @export var jump_velocity: float = -670.0
@@ -23,12 +24,14 @@ extends CharacterBody2D
 @export var tongue_max_damage: int = 4
 @export var tongue_max_charge_time: float = 1.0
 @export var tongue_speed: float = 250.0
+@export var invincible_time: float = 5.0
 
 var can_dash: bool = true
 var camera: Camera2D
 var health: int
 var coyote_timer: float = 0.0
 var facing_direction: int = 1
+var invincibility_timer: float = 0.0
 var is_invincible: bool = false
 
 func _ready() -> void:
@@ -46,6 +49,11 @@ func update_timers(delta: float) -> void:
 		coyote_timer = coyote_time
 	else: 
 		coyote_timer -= delta
+	if invincibility_timer > 0:
+		invincibility_timer -= delta
+	else:
+		is_invincible = false
+		flash_animation.stop()
 
 func apply_gravity(delta: float, gravity_scale: float = 1.0) -> void:
 	velocity.y += gravity * delta * gravity_scale
@@ -76,9 +84,14 @@ func take_hit(damage: int, knockback: Vector2) -> void:
 	state_machine.transition_to("HurtState")
 	camera.shake(8.0)
 
+	is_invincible = true
 
 	if health <= 0:
 		die()
+	else: 
+		invincibility_timer = invincible_time
+	
+	flash_animation.play("hit_animation")
 
 func die() -> void:
 	is_invincible = true

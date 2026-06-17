@@ -19,7 +19,7 @@
 &"portraits": {
 "idle": {
 "export_overrides": {
-"image": ""
+"image": "\"res://dialogue/characters/images (22).jpg\""
 },
 "mirror": false,
 "offset": Vector2(0, 0),

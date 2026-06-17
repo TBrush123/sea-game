@@ -5,6 +5,10 @@
 [ext_resource type="Script" uid="uid://dl6eom082crip" path="res://scripts/hitbox.gd" id="2_esgye"]
 [ext_resource type="Script" uid="uid://cq0qe3lhrmeco" path="res://scripts/state_machine.gd" id="4_4h52x"]
 [ext_resource type="Script" uid="uid://dpew030car50w" path="res://scenes/enemies/superCoolBoss/telegraph_state.gd" id="5_4h52x"]
+[ext_resource type="Script" uid="uid://rtu2ass4um7m" path="res://scenes/enemies/superCoolBoss/slam_state.gd" id="6_ncple"]
+[ext_resource type="Script" uid="uid://djwxpihubg4ho" path="res://scenes/enemies/superCoolBoss/stomp_state.gd" id="7_6ou8a"]
+[ext_resource type="PackedScene" uid="uid://rovqacxinaa" path="res://scenes/game_scene/bullets/shockwave.tscn" id="8_eja1i"]
+[ext_resource type="Script" uid="uid://drk78to51ogq4" path="res://scenes/enemies/superCoolBoss/idle_state.gd" id="8_qq8eo"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fl5py"]
 animations = [{
@@ -31,10 +35,6 @@ size = Vector2(332, 346)
 
 [node name="SuperCoolBoss" type="CharacterBody2D" unique_id=1491804352]
 script = ExtResource("1_fl5py")
-max_health = null
-move_speed = null
-attack_damage = null
-gravity = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=890219416]
 scale = Vector2(3, 3)
@@ -63,12 +63,23 @@ metadata/_custom_type_script = "uid://dl6eom082crip"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SlamHitbox" unique_id=541617730]
 shape = SubResource("RectangleShape2D_qq8eo")
 
-[node name="Marker2D" type="Marker2D" parent="." unique_id=2088781245]
+[node name="ShockwaveMarker" type="Marker2D" parent="." unique_id=2088781245]
 position = Vector2(-271, 167)
 
-[node name="StateMachine" type="Node" parent="." unique_id=158490625]
+[node name="StateMachine" type="Node" parent="." unique_id=158490625 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("4_4h52x")
+initial_state = NodePath("IdleState")
 metadata/_custom_type_script = "uid://cq0qe3lhrmeco"
 
 [node name="TelegraphState" type="Node" parent="StateMachine" unique_id=1527548083]
 script = ExtResource("5_4h52x")
+
+[node name="SlamState" type="Node" parent="StateMachine" unique_id=1287639327]
+script = ExtResource("6_ncple")
+
+[node name="StompState" type="Node" parent="StateMachine" unique_id=464830210]
+script = ExtResource("7_6ou8a")
+shockwave_scene = ExtResource("8_eja1i")
+
+[node name="IdleState" type="Node" parent="StateMachine" unique_id=1515428040]
+script = ExtResource("8_qq8eo")
