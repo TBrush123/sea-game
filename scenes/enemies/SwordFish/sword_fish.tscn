@@ -4,21 +4,56 @@
 [ext_resource type="Texture2D" uid="uid://crrd2lw3d5y4f" path="res://assets/enemy/swordfish/f_walk/frame0000.png" id="2_bada8"]
 [ext_resource type="Script" uid="uid://cq0qe3lhrmeco" path="res://scripts/state_machine.gd" id="2_fs6k0"]
 [ext_resource type="Texture2D" uid="uid://crub5hfqontjx" path="res://icon.svg" id="2_oi0c7"]
+[ext_resource type="Texture2D" uid="uid://dkynh3t8nk4dh" path="res://assets/enemy/swordfish/f_idle/frame0000.png" id="2_qgiur"]
+[ext_resource type="Texture2D" uid="uid://5nb7ahjxmbbb" path="res://assets/enemy/swordfish/f_dash1.png" id="2_r50ox"]
 [ext_resource type="Texture2D" uid="uid://640j63i0dpse" path="res://assets/enemy/swordfish/f_walk/frame0001.png" id="3_6wy1d"]
+[ext_resource type="Texture2D" uid="uid://bjk4fu6biul1u" path="res://assets/enemy/swordfish/f_idle/frame0001.png" id="3_bgs6g"]
+[ext_resource type="Texture2D" uid="uid://jh02wq4ro5al" path="res://assets/enemy/swordfish/f_dash2.png" id="3_rvyfh"]
 [ext_resource type="Script" uid="uid://dvup5jwctx8xe" path="res://scenes/enemies/states/hurt_state.gd" id="4_5u3cr"]
 [ext_resource type="Script" uid="uid://c4giyqerom7y3" path="res://scenes/enemies/SwordFish/telegraph_state.gd" id="4_6cokt"]
 [ext_resource type="Texture2D" uid="uid://bgqu00pnrya2h" path="res://assets/enemy/swordfish/f_walk/frame0002.png" id="4_b3e41"]
 [ext_resource type="Script" uid="uid://diacfh8mbsu5x" path="res://scenes/enemies/SwordFish/patrol_state.gd" id="4_oi0c7"]
+[ext_resource type="Texture2D" uid="uid://20dx6xeb1u7i" path="res://assets/enemy/swordfish/f_idle/frame0002.png" id="4_r50ox"]
 [ext_resource type="Script" uid="uid://cfq6g0i4ov5nl" path="res://scenes/enemies/SwordFish/lunge_state.gd" id="5_6cokt"]
 [ext_resource type="Texture2D" uid="uid://defsuhpmf55y8" path="res://assets/enemy/swordfish/f_walk/frame0003.png" id="5_61chp"]
+[ext_resource type="Texture2D" uid="uid://cswtgqd3yu4ow" path="res://assets/enemy/swordfish/f_idle/frame0003.png" id="5_rvyfh"]
 [ext_resource type="Texture2D" uid="uid://djpqk726d2frp" path="res://assets/enemy/swordfish/f_walk/frame0004.png" id="6_61chp"]
 [ext_resource type="Script" uid="uid://dl6eom082crip" path="res://scripts/hitbox.gd" id="7_e6wu5"]
 [ext_resource type="Texture2D" uid="uid://bgm8iuwa7e433" path="res://assets/enemy/swordfish/f_walk/frame0005.png" id="7_em02r"]
 [ext_resource type="Script" uid="uid://b08tq18cyd2ii" path="res://scenes/enemies/contact_damage.gd" id="8_bfj1j"]
 [ext_resource type="Texture2D" uid="uid://4vlpu7xcftpi" path="res://assets/enemy/swordfish/f_walk/frame0006.png" id="8_ikb0t"]
+[ext_resource type="Script" uid="uid://bo2il7w50dmes" path="res://scenes/enemies/SwordFish/recovery_state.gd" id="23_rvyfh"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o0enl"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_r50ox")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rvyfh")
+}],
+"loop": 0,
+"name": &"f_dash",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qgiur")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bgs6g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_r50ox")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_rvyfh")
+}],
+"loop": 1,
+"name": &"f_idle",
+"speed": 4.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_bada8")
@@ -41,10 +76,62 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("8_ikb0t")
 }],
-"loop": true,
+"loop": 1,
 "name": &"f_walk",
 "speed": 6.0
 }]
+
+[sub_resource type="Animation" id="Animation_ln3h3"]
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_uygh0"]
+resource_name = "hit_animation"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.083333336, -0.16666667, 0, 0, 0, -0.08888888, 0.16666667, 0, 0),
+"times": PackedFloat32Array(0, 0.23333333, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_aa45k"]
+resource_name = "hit_animation_enemy"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0.0, 1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r50ox"]
+_data = {
+&"RESET": SubResource("Animation_ln3h3"),
+&"hit_animation": SubResource("Animation_uygh0"),
+&"hit_animation_enemy": SubResource("Animation_aa45k")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6cokt"]
 size = Vector2(2128.75, 448)
@@ -97,6 +184,7 @@ hue_variation_curve = SubResource("CurveTexture_qudvl")
 [node name="SwordFish" type="CharacterBody2D" unique_id=114974541 node_paths=PackedStringArray("raycast") groups=["enemy"]]
 collision_layer = 4
 script = ExtResource("1_vmihk")
+move_speed = 120.0
 raycast = NodePath("RayCast2D")
 metadata/_custom_type_script = "uid://dwqi5oyepmvls"
 
@@ -104,24 +192,13 @@ metadata/_custom_type_script = "uid://dwqi5oyepmvls"
 position = Vector2(0, -87)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_o0enl")
-animation = &"f_walk"
+animation = &"f_dash"
+frame = 1
+frame_progress = 1.0
 
-[node name="StateMachine" type="Node" parent="." unique_id=766617862 node_paths=PackedStringArray("initial_state")]
-script = ExtResource("2_fs6k0")
-initial_state = NodePath("PatrolState")
-metadata/_custom_type_script = "uid://cq0qe3lhrmeco"
-
-[node name="PatrolState" type="Node" parent="StateMachine" unique_id=1437382314]
-script = ExtResource("4_oi0c7")
-
-[node name="TelegraphState" type="Node" parent="StateMachine" unique_id=1538721494]
-script = ExtResource("4_6cokt")
-
-[node name="LungeState" type="Node" parent="StateMachine" unique_id=288076973]
-script = ExtResource("5_6cokt")
-
-[node name="HurtState" type="Node" parent="StateMachine" unique_id=1200837409]
-script = ExtResource("4_5u3cr")
+[node name="FlashAnimation" type="AnimationPlayer" parent="AnimatedSprite2D" unique_id=1639323143]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_r50ox")
 
 [node name="DetectionArea" type="Area2D" parent="." unique_id=970779715]
 collision_layer = 4
@@ -173,3 +250,30 @@ process_material = SubResource("ParticleProcessMaterial_n8lcg")
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=505427922]
 target_position = Vector2(-1968, 0)
 collision_mask = 11
+
+[node name="StateMachine" type="Node" parent="." unique_id=766617862 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_fs6k0")
+initial_state = NodePath("PatrolState")
+metadata/_custom_type_script = "uid://cq0qe3lhrmeco"
+
+[node name="PatrolState" type="Node" parent="StateMachine" unique_id=1437382314]
+script = ExtResource("4_oi0c7")
+patrol_distance = 600.0
+lunge_cooldown = 1.0
+
+[node name="TelegraphState" type="Node" parent="StateMachine" unique_id=1538721494]
+script = ExtResource("4_6cokt")
+
+[node name="LungeState" type="Node" parent="StateMachine" unique_id=288076973]
+script = ExtResource("5_6cokt")
+lunge_speed = 2000.0
+
+[node name="HurtState" type="Node" parent="StateMachine" unique_id=1200837409]
+script = ExtResource("4_5u3cr")
+
+[node name="RecoveryState" type="Node" parent="StateMachine" unique_id=534259735]
+script = ExtResource("23_rvyfh")
+
+[node name="EdgeDetector" type="RayCast2D" parent="." unique_id=1650880538]
+position = Vector2(-251, 112)
+target_position = Vector2(0, 300)

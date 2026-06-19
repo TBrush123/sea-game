@@ -2,6 +2,7 @@ extends State
 
 func enter() -> void:
 	player.sprite.play("jump")
+	player.jumped = true
 	player.velocity.y = player.jump_velocity
 	player.coyote_timer = 0.0
 

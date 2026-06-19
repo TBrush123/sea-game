@@ -17,6 +17,7 @@ func _ready() -> void:
 			child.state_machine = self
 	
 	current_state = initial_state
+	await player.ready
 	current_state.enter()
 
 func _physics_process(delta: float) -> void:

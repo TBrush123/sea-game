@@ -36,6 +36,17 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("4_cp5pl")
+}],
+"loop": 1,
+"name": &"anticipate",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_aa45k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_cp5pl")
 }, {
 "duration": 1.0,
 "texture": ExtResource("5_efhit")
@@ -46,9 +57,14 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("7_slsyk")
 }],
-"loop": false,
+"loop": 0,
 "name": &"attack",
 "speed": 12.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"new_animation",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -66,7 +82,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("11_8w7k4")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk",
 "speed": 4.0
 }]
@@ -181,7 +197,8 @@ material = SubResource("ShaderMaterial_cp5pl")
 position = Vector2(-240, -127)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_qa0nx")
-animation = &"attack"
+animation = &"anticipate"
+frame_progress = 0.28696352
 
 [node name="FlashAnimation" type="AnimationPlayer" parent="AnimatedSprite2D" unique_id=902763617]
 root_node = NodePath("../..")
@@ -263,3 +280,7 @@ process_material = SubResource("ParticleProcessMaterial_oansv")
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=1754889704]
 target_position = Vector2(-2200, 0)
+
+[node name="EdgeDetector" type="RayCast2D" parent="." unique_id=2099048803]
+position = Vector2(-261, 74)
+target_position = Vector2(0, 32)

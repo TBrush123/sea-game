@@ -41,10 +41,10 @@ func take_hit(damage: int, knockback: Vector2) -> void:
 		update_facing(facing_direction * -1)
 
 	if health > 0:
-		player.camera.shake(4.0)
+		get_viewport().get_camera_2d().shake(4.0)
 		HitStop.freeze()
 	else:
-		player.camera.shake(20.0)
+		get_viewport().get_camera_2d().shake(20.0)
 		HitStop.freeze(0.12, 0.02)
 
 	if health <= int(max_health * phase2_threshold) and phase == 1:

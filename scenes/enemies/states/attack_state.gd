@@ -11,7 +11,7 @@ var hitbox_enabled: bool = false
 var attacking: bool = false
 
 func enter() -> void:
-	player.sprite.play("attack")
+	player.sprite.play("anticipate")
 	player.sprite.speed_scale = 1.0
 	player.sprite.stop()
 	anticipation_timer = anticipation_time
@@ -38,7 +38,7 @@ func physics_update(delta: float) -> void:
 	if not hitbox_enabled:
 		hitbox_enabled = true
 		attacking = true
-		player.sprite.play()
+		player.sprite.play("attack")
 		enable_hitbox_delayed(player.hitbox, windup_delay)
 	
 	if attacking:

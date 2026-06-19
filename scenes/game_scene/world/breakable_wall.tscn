@@ -5,10 +5,10 @@
 [ext_resource type="Script" uid="uid://btgmopseda1yg" path="res://scenes/game_scene/world/break_detector.gd" id="3_77v1g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yrfrq"]
-size = Vector2(65, 564)
+size = Vector2(147, 2962)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_77v1g"]
-size = Vector2(107, 597)
+size = Vector2(197, 3075)
 
 [sub_resource type="Gradient" id="Gradient_yrfrq"]
 offsets = PackedFloat32Array(0.7813954, 1)
@@ -30,10 +30,11 @@ scale_max = 0.19999999
 color_ramp = SubResource("GradientTexture1D_77v1g")
 
 [node name="BreakableWall" type="StaticBody2D" unique_id=1335956177]
+collision_mask = 0
 script = ExtResource("1_yrfrq")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1213655747]
-scale = Vector2(0.515625, 4.421875)
+scale = Vector2(1.15625, 23.125)
 texture = ExtResource("1_3p4ib")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1615021305]

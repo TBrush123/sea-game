@@ -5,7 +5,7 @@ extends CharacterBody2D
 @export var move_speed: float = 40.0
 @export var attack_damage: int = 1
 @export var gravity: float = 900
-
+@onready var edge_detector: RayCast2D = $EdgeDetector
 @export var raycast: RayCast2D
 
 var health: int
@@ -39,10 +39,10 @@ func take_hit(damage: int, knockback: Vector2) -> void:
 		update_facing(facing_direction * -1)
 
 	if health > 0:
-		player.camera.shake(4.0)
+		get_viewport().get_camera_2d().shake(4.0)
 		HitStop.freeze()
 	else:
-		player.camera.shake(8.0)
+		get_viewport().get_camera_2d().shake(8.0)
 		HitStop.freeze(0.12, 0.02)
  
 	if health <= 0:
@@ -63,10 +63,14 @@ func update_facing(direction: float) -> void:
 	if direction != 0 and direction != facing_direction:
 		facing_direction = sign(direction)
 		sprite.flip_h = facing_direction > 0
+		sprite.position.x *= -1
 		hitbox.position.x *= -1
 		detection_area.scale.x *= -1
 		if raycast:
 			raycast.target_position.x *= -1
+		if edge_detector:
+			edge_detector.target_position.x *= -1
+			edge_detector.position.x *= -1
 	
 func stun(duration: float) -> void:
 	if state_machine.current_state.name != "StunState":

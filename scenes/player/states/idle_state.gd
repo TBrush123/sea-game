@@ -1,8 +1,7 @@
 extends State
 
 func enter() -> void:
-	if player.sprite:
-		player.sprite.play("idle")
+	player.sprite.play("idle")
 
 func physics_update(delta: float) -> void:
 	var direction = Input.get_axis("move_left", "move_right")
@@ -25,6 +24,7 @@ func physics_update(delta: float) -> void:
 
 	if Input.is_action_pressed("jump"):
 		state_machine.transition_to("JumpState")
+		player.coyote_timer = -1.0
 		return
 		
 	if direction != 0:

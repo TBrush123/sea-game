@@ -7,7 +7,8 @@ var target: Node2D = null
 var lunge_direction: int = 1
 
 func enter() -> void:
-	#player.sprite.play("telegraph")
+	player.sprite.play("f_idle")
+	player.sprite.stop()
 	player.velocity.x = 0
 	timer = 0.0
 
@@ -15,6 +16,9 @@ func enter() -> void:
 		if body.is_in_group("player"):
 			target = body
 			break
+	if target == null:
+		state_machine.transition_to("PatrolState")
+		return
 	lunge_direction = sign(target.global_position.x - player.global_position.x)
 	player.update_facing(lunge_direction)
 	

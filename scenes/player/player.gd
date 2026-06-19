@@ -33,6 +33,7 @@ var coyote_timer: float = 0.0
 var facing_direction: int = 1
 var invincibility_timer: float = 0.0
 var is_invincible: bool = false
+var jumped: bool = false
 
 func _ready() -> void:
 	health = max_health
@@ -46,9 +47,11 @@ func can_jump() -> bool:
 
 func update_timers(delta: float) -> void:
 	if is_on_floor():
-		coyote_timer = coyote_time
+		if not jumped:
+			coyote_timer = coyote_time
 	else: 
 		coyote_timer -= delta
+		jumped = false
 	if invincibility_timer > 0:
 		invincibility_timer -= delta
 	else:
@@ -62,7 +65,7 @@ func update_facing(direction: float) -> void:
 	if direction != 0 and direction != facing_direction:
 		facing_direction = sign(direction)
 		sprite.flip_h = facing_direction < 0
-		basic_attack_hitbox.position *= -1
+		basic_attack_hitbox.position.x *= -1
 		tummy_mask.position.x *= -1
 		tongue_sprite.position.x *= -1
 		tongue_sprite.flip_h = facing_direction < 0
@@ -82,8 +85,10 @@ func take_hit(damage: int, knockback: Vector2) -> void:
 	velocity += knockback
 	print("knockback:", knockback, " velocity:", velocity)
 	state_machine.transition_to("HurtState")
-	camera.shake(8.0)
+	get_viewport().get_camera_2d().shake(8.0)
 
+		
+		
 	is_invincible = true
 
 	if health <= 0:
@@ -106,4 +111,3 @@ func die() -> void:
 	set_movement_locked(false)
 	is_invincible = false
 	state_machine.transition_to("IdleState")
-

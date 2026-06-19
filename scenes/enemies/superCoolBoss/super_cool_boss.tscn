@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://djwxpihubg4ho" path="res://scenes/enemies/superCoolBoss/stomp_state.gd" id="7_6ou8a"]
 [ext_resource type="PackedScene" uid="uid://rovqacxinaa" path="res://scenes/game_scene/bullets/shockwave.tscn" id="8_eja1i"]
 [ext_resource type="Script" uid="uid://drk78to51ogq4" path="res://scenes/enemies/superCoolBoss/idle_state.gd" id="8_qq8eo"]
+[ext_resource type="Script" uid="uid://dfylm7cdy8o51" path="res://scenes/enemies/superCoolBoss/dormant_state.gd" id="10_12p0f"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fl5py"]
 animations = [{
@@ -16,7 +17,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("1_byi80")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 5.0
 }]
@@ -68,7 +69,7 @@ position = Vector2(-271, 167)
 
 [node name="StateMachine" type="Node" parent="." unique_id=158490625 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("4_4h52x")
-initial_state = NodePath("IdleState")
+initial_state = NodePath("DormantState")
 metadata/_custom_type_script = "uid://cq0qe3lhrmeco"
 
 [node name="TelegraphState" type="Node" parent="StateMachine" unique_id=1527548083]
@@ -83,3 +84,6 @@ shockwave_scene = ExtResource("8_eja1i")
 
 [node name="IdleState" type="Node" parent="StateMachine" unique_id=1515428040]
 script = ExtResource("8_qq8eo")
+
+[node name="DormantState" type="Node" parent="StateMachine" unique_id=2104587573]
+script = ExtResource("10_12p0f")

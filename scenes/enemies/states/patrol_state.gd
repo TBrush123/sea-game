@@ -1,6 +1,9 @@
 extends State
 
 @export var patrol_distance: float = 200.0
+@export var turn_cooldown: float = 0.3
+
+var turn_cooldown_timer: float = 0.0
 var start_x: float
 var direction: int = -1
 
@@ -18,12 +21,28 @@ func physics_update(delta: float) -> void:
 	player.velocity.x = direction * player.move_speed
 	player.update_facing(direction)
 	player.move_and_slide()
+	player.apply_gravity(delta)
 
-	if abs(player.global_position.x - start_x) > patrol_distance:
-		direction *= -1
+	turn_cooldown_timer -= delta
 
-	if not player.is_on_floor():
-		player.apply_gravity(delta)
+	if turn_cooldown_timer <= 0.0:
+		var should_turn = false
+		for i in range(player.get_slide_collision_count()):
+			var collision = player.get_slide_collision(i)
+			if abs(collision.get_normal().x) > 0.5:
+				should_turn = true
+				break
+		if player.is_on_floor() and player.edge_detector != null and not player.edge_detector.is_colliding():
+			should_turn = true
+	
+
+		if abs(player.global_position.x - start_x) > patrol_distance:
+			should_turn = true
+		
+		if should_turn:
+			direction *= -1
+			turn_cooldown_timer = turn_cooldown
+
 
 	if player.detection_area.has_overlapping_bodies():
 		for body in player.detection_area.get_overlapping_bodies():

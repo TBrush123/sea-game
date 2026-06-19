@@ -19,6 +19,7 @@ func physics_update(delta: float) -> void:
 
 	if Input.is_action_pressed("jump"):
 		state_machine.transition_to("JumpState")
+		player.coyote_timer = -1.0
 		return
 	
 	if not player.is_on_floor():
