@@ -1,0 +1,6 @@
+join SadaFish center
+SadaFish: *Whistles* That's a huge gap to simply jump over it.
+if {MutationManager.has_mutation(MutationManager.mutation_type.DASH)} == true:
+	SadaFish: Let's try this new thing I've learned
+else:
+	SadaFish: I can't really do anything about it right now. Maybe, I should see those creatures up close?

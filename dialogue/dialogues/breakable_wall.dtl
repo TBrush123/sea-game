@@ -1,0 +1,7 @@
+join SadaFish center
+SadaFish: Wow, that's a huge wall. I wonder what they're keeping behind it.
+if {MutationManager.has_mutation(MutationManager.mutation_type.TONGUE)} == false:
+	SadaFish: Huh. This wall looks pretty flimsy. One good hit and it'd probably crumble. Too bad I can't do that... yet.
+else:
+	SadaFish: Huh. This wall looks pretty flimsy. One good hit and it'd probably crumble. It doesn't stand a chance against me.
+SadaFish: In any case, I'm coming for that doctor!

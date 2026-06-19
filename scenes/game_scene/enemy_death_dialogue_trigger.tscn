@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d0ggv6hfrg4l4"]
+
+[ext_resource type="Script" uid="uid://cet23b54tuu0p" path="res://scenes/game_scene/enemy_death_dialogue_trigger.gd" id="1_k5a11"]
+
+[node name="EnemyDeathDialogueTrigger" type="Node" unique_id=392339332]
+script = ExtResource("1_k5a11")

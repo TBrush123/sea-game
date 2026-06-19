@@ -44,7 +44,7 @@ func physics_update(delta: float) -> void:
 	
 	player.move_and_slide()
 
-	if timer >= dash_duration:
+	if timer >= dash_duration or not Input.is_action_pressed("dash"):
 		if player.is_on_floor():
 			state_machine.transition_to("IdleState")
 		else:

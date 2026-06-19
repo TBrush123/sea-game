@@ -1,20 +1,28 @@
-Веки, слипшиеся словно после долгого сна, еле-еле открываются, позволяя резкому свету лампы перед лицом ослепить себя. Кровать кажется невероятно неудобной и жесткой, в отличие от обычных деньков, когда даже вставать с нее неохота.
+[background arg="res://assets/menu/photo_5307765471560015368_x.jpg" fade="0.0"]
+My eyelids, stuck together as if after a long sleep, barely open, allowing the harsh light of the lamp before my face to blind me. The bed feels incredibly uncomfortable and hard, unlike on normal days, when I don't even want to get up.
 join sada center
-sada: Свет...? Я же уснул с выключенными лампами...
-Хочется потянуть руку и потереть глаза от недоумения. Однако от этого действия останавливает единственный факт\: руки скованы и прижаты к чему-то вроде койки. Не сдвигаются ни на дюйм.
-sada: Какого..? Где это я? Как...
-Внезапно в комнату врывается незнакомый человек — в медицинской маске, очках и перчатках. Напоминает врача в больнице, готового вот-вот проводить операцию. Учитывая ситуацию, похоже, оно и есть.
+sada: Light...? I fell asleep with the lights off...
+I want to reach out and rub my eyes in confusion. However, one thing stops me from doing so\: my hands are cuffed and pinned to something like a cot. They don't move an inch.
+sada: What the...? Where am I? How...
+Suddenly, a stranger bursts into the room—wearing a medical mask, goggles, and gloves. He resembles a doctor in a hospital, about to perform an operation. Considering the situation, it seems that's exactly it.
 update sada leftmost [animation="Heartbeat"]
 join  center
 join doctor rightmost
-\doctor: Очнулся, я смотрю, рыбка?
-sada:  Кто ты и где я нахожусь? И почему это я 'рыбка'...?
-\doctor: Шумный же ты, рыбка. Ну ничего, сейчас эта прекрасная сыворотка должна это исправить.
-Внезапно он поднимает с ближайшей полки шприц, игла которого блеснула в ярком свете лампы. Игла подносится к руке и впивается в вену, заполняя кровь странной жижей. Сознание тут же начинает ускользать, не позволяя сосредоточиться на том, как доктор уходит из кабинета, даже не проверяя эффект сыворотки.
+\doctor: You're awake, I see, fishy?
+sada: Who are you and where am I? And why am I a 'fishy'...?
+\doctor: You're a noisy one, fishy. Oh well, this wonderful serum should fix that now.
+Suddenly, he picks up a syringe from the nearest shelf, the needle glinting in the bright light of the lamp. The needle moves to my arm and plunges into my faith, filling his blood with a strange liquid.
 leave doctor
 leave sada
 join SadaFish center
-Глаза вновь открываются. Взгляд бросается уже на руки, вид которых координально изменился. Тело ощущается, словно изменилась сама анатомия. Кожа изменила цвет. Да даже пальцы ощущались странно.
-sada: Что это со мной...?
-Свет на секунду погасает, вновь возвращаясь, а оковы уже не сжимают руки. Да и железная дверь, преграждающая выход из комнаты, тоже отворилась.
-sada: Что же. Сочту это за приглашение.
+Changes are felt in my body, as if my bones and muscles are shifting their positions and anatomy. My skin darkens, arms and legs thicken. All these changes in my body cause incredible pain, almost to the point of unconsciousness. It's painful even to watch.
+sada: What's wrong with me...?
+update SadaFish left
+join doctor right
+\doctor: Wow, so you can even talk.  I'll have to write down that this is a successful experiment...
+The light dims for a second, then returns, and the shackles no longer grip my hands. The iron door blocking the exit from the room also opens.
+\doctor: This shouldn't have happened...! Don't move, beast!
+The scientist immediately rushed out of the room, disappearing into the darkness of the corridors. The dim light returned, but the doors remained open.
+leave doctor
+update SadaFish center
+SadaFish: Very well. I'll take that as an invitation.

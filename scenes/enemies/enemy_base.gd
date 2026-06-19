@@ -1,6 +1,8 @@
 class_name EnemyBase
 extends CharacterBody2D
 
+signal died
+
 @export var max_health: int = 3
 @export var move_speed: float = 40.0
 @export var attack_damage: int = 1
@@ -51,6 +53,7 @@ func take_hit(damage: int, knockback: Vector2) -> void:
 	flash_animation.play("hit_animation_enemy")
 
 func die() -> void:
+	died.emit()
 	death_particles.global_position = global_position
 	death_particles.emitting = true
 	sprite.hide()

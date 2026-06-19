@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://0m2ig357m35d" path="res://scenes/game_scene/tutorial_trigger.gd" id="1_t4ext"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t6e8d"]
-size = Vector2(4418, 1840)
+size = Vector2(7016, 2808)
 
 [node name="TutorialTrigger" type="Area2D" unique_id=1354918867]
 collision_layer = 16

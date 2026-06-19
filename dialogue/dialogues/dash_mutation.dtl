@@ -1,7 +1,6 @@
-join sada left
-sada: Нифига у меня тело крутое
+[background arg="res://assets/menu/photo_5307765471560015368_x.jpg" fade="0.0"]
+The swordfish-like creature fell. It was fast, very fast. But there is always a bigger fish.
+SadaFish: Pathetic. However... I can learn something from it, right?
 join swordfish right [animation="Bounce In" wait="true"]
-swordfish: хаблоалфвыдафвы, я делаю супер крутой дэш
-sada: АХУЕТЬ, ОН ДЕЛАЕТ СУПЕР КРУТОЙ ДЭШ
-sada: Я ТОЖЕ ТАК ХОЧУ
-sada: *Делает супер крутой Дэш*
+SadaFish: Dash. Hm... In principle, I can do something similar, it should help if I meet someone else.
+Dash acquired

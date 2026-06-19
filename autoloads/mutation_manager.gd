@@ -2,7 +2,7 @@ extends Node
 
 signal added_mutation(mutation: mutation_type)
 
-var current_mutations: Array[mutation_type] = [mutation_type.BASE]
+var current_mutations: Array[mutation_type] = []
 
 enum mutation_type {
     BASE,

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dbsknbav0l2hu" path="res://scenes/menus/tutorial/tutorial_prompt.gd" id="1_ssomp"]
 [ext_resource type="LabelSettings" uid="uid://b63jen7o8ascs" path="res://resources/themes/tutorial_font.tres" id="2_efen2"]
+[ext_resource type="Theme" uid="uid://2qh3aix7i37a" path="res://resources/themes/gravity.tres" id="3_vprau"]
 
 [node name="TutorialPrompt" type="CanvasLayer" unique_id=1391538280 groups=["tutorial_prompt"]]
 script = ExtResource("1_ssomp")
@@ -10,21 +11,29 @@ label_theme = ExtResource("2_efen2")
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1711767315]
 offset_right = 40.0
 offset_bottom = 40.0
+theme = ExtResource("3_vprau")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1244305261]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=759749318]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1244305261]
 layout_mode = 2
 
-[node name="ActionRow" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1606967066]
+[node name="ActionRow" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1606967066]
 layout_mode = 2
 
-[node name="KeyLabel" type="Label" parent="PanelContainer/VBoxContainer/ActionRow" unique_id=729608049]
+[node name="KeyLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ActionRow" unique_id=729608049]
 layout_mode = 2
 text = "[Space]"
 label_settings = ExtResource("2_efen2")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Description" type="Label" parent="PanelContainer/VBoxContainer/ActionRow" unique_id=943097621]
+[node name="Description" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ActionRow" unique_id=943097621]
 layout_mode = 2
 text = "- Jump"
 label_settings = ExtResource("2_efen2")

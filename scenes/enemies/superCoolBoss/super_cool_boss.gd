@@ -1,6 +1,8 @@
 class_name SuperCoolBoss
 extends CharacterBody2D
 
+signal died
+
 @export var max_health: int = 20
 @export var move_speed: float = 40.0
 @export var phase2_threshold: float = 0.5
@@ -46,14 +48,15 @@ func take_hit(damage: int, knockback: Vector2) -> void:
 	else:
 		get_viewport().get_camera_2d().shake(20.0)
 		HitStop.freeze(0.12, 0.02)
-
+	if health <= 0:
+		die()
+		return
+		
 	if health <= int(max_health * phase2_threshold) and phase == 1:
 		state_machine.transition_to("PhaseTransitionState")
 		return
 	
-	if health <= 0:
-		die()
-		return 
+	 
 	
 	if phase == 2:
 		state_machine.transition_to("HurtState")
@@ -72,8 +75,10 @@ func take_weak_point_hit(damage: int, knockback: Vector2) -> void:
 		return
 
 func die() -> void:
-	death_particles.global_position = global_position
-	death_particles.emitting = true
+	died.emit()
+	if death_particles:
+		death_particles.global_position = global_position
+		death_particles.emitting = true
 	sprite.hide()
 	set_collision_layer_value(1, false)
 	set_collision_mask_value(1, false)

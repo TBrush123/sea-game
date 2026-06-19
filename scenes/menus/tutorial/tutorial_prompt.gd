@@ -2,7 +2,7 @@ extends CanvasLayer
 
 @export var label_theme: LabelSettings
 
-@onready var container: VBoxContainer = $PanelContainer/VBoxContainer
+@onready var container: VBoxContainer = $PanelContainer/MarginContainer/VBoxContainer
 
 var action_rows: Dictionary = {}
 var current_actions: Array = []

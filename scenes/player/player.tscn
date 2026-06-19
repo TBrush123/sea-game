@@ -338,7 +338,7 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_dovo2")
 speed = 800.0
-jump_velocity = -1900.0
+jump_velocity = -2000.0
 gravity = 1500.0
 coyote_time = 0.2
 tongue_max_damage = 3
@@ -368,6 +368,7 @@ script = ExtResource("8_7obkq")
 
 [node name="DashState" type="Node" parent="StateMachine" unique_id=60701353]
 script = ExtResource("9_genst")
+dash_speed = 4500.0
 
 [node name="TongueState" type="Node" parent="StateMachine" unique_id=1129384687]
 script = ExtResource("10_rw8a5")

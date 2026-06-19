@@ -8,7 +8,7 @@ func enter() -> void:
 
 func physics_update(delta: float) -> void:
 
-	if not Input.is_action_pressed("jump") and player.velocity.y < 0:
+	if Input.is_action_just_released("jump") and player.velocity.y < 0:
 		player.velocity.y = 0.0
 
 	if Input.is_action_just_pressed("tongue_attack") and \

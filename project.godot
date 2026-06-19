@@ -32,12 +32,18 @@ InputHelper="*uid://otggrec84ht8"
 directories/dch_directory={
 "SadaFish": "res://dialogue/characters/SadaFish.dch",
 "doctor": "res://dialogue/characters/doctor.dch",
+"octodoctor": "res://dialogue/characters/octodoctor.dch",
 "sada": "res://dialogue/characters/sada.dch",
 "swordfish": "res://dialogue/characters/swordfish.dch"
 }
 directories/dtl_directory={
+"become_a_sada": "res://dialogue/characters/become_a_sada.dtl",
+"breakable_wall": "res://dialogue/dialogues/breakable_wall.dtl",
 "dash_mutation": "res://dialogue/dialogues/dash_mutation.dtl",
-"entrance": "res://dialogue/dialogues/entrance.dtl"
+"entrance": "res://dialogue/dialogues/entrance.dtl",
+"leap_of_fate": "res://dialogue/dialogues/leap_of_fate.dtl",
+"stronger_smarter_better": "res://dialogue/dialogues/stronger_smarter_better.dtl",
+"turtle": "res://dialogue/dialogues/turtle.dtl"
 }
 layout/style_directory={
 "": "res://dialogue/style/style.tres",
