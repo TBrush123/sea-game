@@ -24,6 +24,7 @@ var facing_direction: int = -1
 
 func _ready() -> void:
 	health = max_health
+	
 
 func apply_gravity(delta: float, gravity_scale: float = 1.0) -> void:
 	velocity.y += gravity * delta * gravity_scale
@@ -37,8 +38,9 @@ func take_hit(damage: int, knockback: Vector2) -> void:
 	tween.tween_property(self, "modulate", Color.WHITE, 0.15)
 
 	var player = get_tree().get_first_node_in_group("player")
-	if player.facing_direction == facing_direction:
-		update_facing(facing_direction * -1)
+	if player:
+		update_facing(sign(player.global_position.x - global_position.x))
+		
 
 	if health > 0:
 		get_viewport().get_camera_2d().shake(4.0)

@@ -13,21 +13,20 @@ var phase: int = 1
 var facing_direction: int = -1
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var slam_hitbox: Hitbox = $Hitbox
+@onready var slam_hitbox: Hitbox = $SlamHitbox
 @onready var state_machine: Node = $StateMachine
-@onready var weak_point_hurtbox: Area2D = $WeakPointHurtbox
-@onready var armor_hurtbox: Area2D = $ArmorHurtbox
 @onready var death_particles: GPUParticles2D = $DeathParticles
 @onready var shockwave_marker: Marker2D = $ShockwaveMarker
+@onready var ink: Node2D = $Ink
 
 func _ready() -> void:
 	health = max_health
-	weak_point_hurtbox.monitoring = false
 
 func apply_gravity(delta: float, gravity_scale: float = 1.0) -> void:
 	velocity.y += gravity * delta * gravity_scale
 
 func _physics_process(delta: float) -> void:
+	print(state_machine.current_state.name)
 	apply_gravity(delta)
 
 func take_hit(damage: int, knockback: Vector2) -> void:
@@ -88,8 +87,11 @@ func die() -> void:
 func update_facing(direction: float) -> void:
 	if direction != 0 and direction != facing_direction:
 		facing_direction = sign(direction)
-		sprite.flip_h = facing_direction < 0
-		slam_hitbox.position *= -1
+		sprite.flip_h = facing_direction > 0
+		slam_hitbox.position.x *= -1
+		ink.scale.x *= -1
+		shockwave_marker.position.x *= -1
+
 	
 func stun(duration: float) -> void:
 	if state_machine.current_state.name != "StunState":
@@ -100,3 +102,12 @@ func stun(duration: float) -> void:
 func _on_stun_end() -> void:
 	if state_machine.current_state.name == "StunState":
 		state_machine.transition_to("PatrolState")
+
+func get_speed_multiplier() -> float:
+	return 1.5 if phase == 2 else 1.0
+
+func get_attack_speed_multiplier() -> float:
+	return 1.5 if phase == 2 else 1.0
+
+func get_player() -> Node2D:
+	return get_tree().get_first_node_in_group("player")

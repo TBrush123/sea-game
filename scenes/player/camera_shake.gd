@@ -14,16 +14,17 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 
-	if _target == null:
-		return
+	if _target != null:
 
-	var camera_position = global_position
+		var camera_position = global_position
 
-	var diff = _target.global_position - global_position
-	if abs(diff.x) > dead_zone.x:
-		camera_position.x += diff.x - sign(diff.x) * dead_zone.x
-	if abs(diff.y) > dead_zone.y:
-		camera_position.y += diff.y - sign(diff.y) * dead_zone.y
+		var diff = _target.global_position - global_position
+		if abs(diff.x) > dead_zone.x:
+			camera_position.x += diff.x - sign(diff.x) * dead_zone.x
+		if abs(diff.y) > dead_zone.y:
+			camera_position.y += diff.y - sign(diff.y) * dead_zone.y
+		
+		global_position = camera_position
 
 	if shake_strength > 0:
 		offset = Vector2(
@@ -34,7 +35,6 @@ func _process(delta: float) -> void:
 	else:
 		offset = Vector2.ZERO
 
-	global_position = camera_position
 
 func shake(amount: float = 4.0) -> void:
 	shake_strength = amount

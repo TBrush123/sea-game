@@ -11,9 +11,11 @@ var lunge_timer: float = 0.0
 var current_damage: int = 0
 var just_entered: bool = true
 var full_charge_tween: Tween = null
+var _frame_watcher: Callable
 
 func enter() -> void:
-	#player.sprite.play("tongue_charge")
+	player.sprite.play("tongue")
+	player.sprite.pause()
 	charge_time = 0.0
 	is_charging = true
 	player.velocity.x = 0
@@ -81,7 +83,6 @@ func _gallop_on() -> void:
 	is_charging = false
 	lunge_timer = 0.0
 	player.sprite.modulate = Color.WHITE
-	#player.sprite.play("tongue_lunge")
 
 	var charge_ratio = charge_time / player.tongue_max_charge_time
 	current_damage = lerp(player.tongue_min_damage, player.tongue_max_damage, charge_ratio)
@@ -94,7 +95,7 @@ func _gallop_on() -> void:
 
 	var base_sprite_position_x = player.tongue_sprite.position.x
 	var base_hitbox_position_x = player.tongue_hitbox.position.x
-	var max_forward_offset = lerp(10.0, 40.0, charge_ratio)
+	var max_forward_offset = lerp(150.0, 300.0, charge_ratio)
 
 	var collision_shape: CollisionShape2D = player.tongue_hitbox.get_node("CollisionShape2D")
 	var shape: RectangleShape2D = collision_shape.shape
@@ -103,24 +104,39 @@ func _gallop_on() -> void:
 	shape.size = lerp(min_size, max_size, charge_ratio)
 
 
-	player.tongue_sprite.show()
-	player.tongue_sprite.position.x = base_sprite_position_x
-	player.tongue_hitbox.position.x = base_hitbox_position_x
-	player.tongue_hitbox.enable()
+	player.sprite.play()
+	player.tongue_sprite.hide()
+	player.tongue_hitbox.disable()
 
+	_frame_watcher = func():
+		if player.sprite.frame >= 2:
+			player.tongue_sprite.show()
+			player.tongue_sprite.position.x = base_sprite_position_x
+			player.tongue_hitbox.position.x = base_hitbox_position_x
+			player.tongue_hitbox.enable()
+			_launch_tongue(base_sprite_position_x, base_hitbox_position_x,
+				direction_sign, max_forward_offset, charge_ratio)
+
+			if player.sprite.frame_changed.is_connected(_frame_watcher):
+				player.sprite.frame_changed.disconnect(_frame_watcher)
+	player.sprite.frame_changed.connect(_frame_watcher)
+
+func _launch_tongue(base_sprite_x: float, base_hitbox_x: float,
+						direction_sign: int, max_forward_offset: float, charge_ratio: float) -> void:
 	var extend_time = lerp(0.18, 0.08, charge_ratio)
 	var retract_time = 0.15
 
 	var tween = player.tongue_sprite.create_tween().set_parallel(true)
 
 	tween.tween_property(
-		player.tongue_sprite, "position:x", base_sprite_position_x + direction_sign * max_forward_offset, extend_time)\
-		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT).from(base_sprite_position_x)
+		player.tongue_sprite, "position:x",
+		base_sprite_x + direction_sign * max_forward_offset, extend_time
+	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 
 	tween.tween_property(
-		player.tongue_hitbox, "position:x", base_hitbox_position_x + direction_sign * max_forward_offset * 5, extend_time)\
-		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT).from(base_hitbox_position_x)
-
+		player.tongue_hitbox, "position:x",
+		base_hitbox_x + direction_sign * max_forward_offset, extend_time
+	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 
 	tween.chain().tween_interval(0.06)
 
@@ -129,12 +145,12 @@ func _gallop_on() -> void:
 	var retract_tween = player.tongue_sprite.create_tween().set_parallel(true)
 
 	retract_tween.tween_property(
-		player.tongue_sprite, "position:x", base_sprite_position_x , extend_time)\
-		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT).from(base_sprite_position_x + direction_sign * max_forward_offset)
+		player.tongue_sprite, "position:x", base_sprite_x , extend_time)\
+		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT).from(base_sprite_x + direction_sign * max_forward_offset)
 
 	retract_tween.tween_property(
-		player.tongue_hitbox, "position:x", base_hitbox_position_x , extend_time)\
-		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT).from(base_hitbox_position_x + direction_sign * max_forward_offset * 5)
+		player.tongue_hitbox, "position:x", base_hitbox_x , extend_time)\
+		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT).from(base_hitbox_x + direction_sign * max_forward_offset * 5)
 
 	retract_tween.chain().tween_callback(func():
 		player.tongue_hitbox.disable()

@@ -11,6 +11,7 @@ join doctor rightmost
 \doctor: You're awake, I see, fishy?
 sada: Who are you and where am I? And why am I a 'fishy'...?
 \doctor: You're a noisy one, fishy. Oh well, this wonderful serum should fix that now.
+[background arg="#000000ff" fade="0.0"]
 Suddenly, he picks up a syringe from the nearest shelf, the needle glinting in the bright light of the lamp. The needle moves to my arm and plunges into my faith, filling his blood with a strange liquid.
 leave doctor
 leave sada

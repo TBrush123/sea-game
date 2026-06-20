@@ -1,28 +1,36 @@
 [gd_scene format=3 uid="uid://rovqacxinaa"]
 
 [ext_resource type="Script" uid="uid://bwctm8lu0bbq3" path="res://scenes/game_scene/bullets/shockwave.gd" id="1_fyq0j"]
-[ext_resource type="Texture2D" uid="uid://crub5hfqontjx" path="res://icon.svg" id="2_un41c"]
+[ext_resource type="Texture2D" uid="uid://tglo5n0rn1rk" path="res://assets/boss/anim boss/fx1.png" id="2_cbyi6"]
+[ext_resource type="Texture2D" uid="uid://bvg65i2sggsok" path="res://assets/boss/anim boss/fx2.png" id="3_55nm5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cbyi6"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_un41c")
+"texture": ExtResource("2_cbyi6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_55nm5")
 }],
-"loop": false,
+"loop": 1,
 "name": &"default",
-"speed": 5.0
+"speed": 8.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_un41c"]
-size = Vector2(106, 110)
+size = Vector2(889, 196)
 
 [node name="Shockwave" type="Area2D" unique_id=101009862]
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_fyq0j")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1888401017]
-modulate = Color(0, 0, 0, 1)
+position = Vector2(0, -374)
 sprite_frames = SubResource("SpriteFrames_cbyi6")
+frame_progress = 0.7380223
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=649417839]
+position = Vector2(1.5, 14)
 shape = SubResource("RectangleShape2D_un41c")

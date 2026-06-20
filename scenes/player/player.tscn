@@ -23,12 +23,11 @@
 [ext_resource type="Texture2D" uid="uid://bkgbfd3bi04uf" path="res://assets/anim/atk/frame0002.png" id="13_vb1ce"]
 [ext_resource type="Texture2D" uid="uid://bfjy76kvlcgka" path="res://assets/anim/atk/frame0003.png" id="14_0ncpa"]
 [ext_resource type="Texture2D" uid="uid://kotl2rxmu4hb" path="res://assets/attack/8.png" id="14_niom3"]
-[ext_resource type="Texture2D" uid="uid://xbcwkoxcdyaa" path="res://assets/anim/dash1/frame0000.png" id="15_upxxc"]
-[ext_resource type="Texture2D" uid="uid://h05d2hljro6s" path="res://assets/anim/dash1/frame0001.png" id="16_ln3h3"]
-[ext_resource type="Texture2D" uid="uid://dpvjfuadfolr3" path="res://assets/anim/dash1/frame0002.png" id="17_uygh0"]
-[ext_resource type="Texture2D" uid="uid://kjtllgsbmqww" path="res://assets/anim/dash1/frame0003.png" id="18_t1aof"]
-[ext_resource type="Texture2D" uid="uid://dimj70l2erb0w" path="res://assets/anim/dash1/frame0004.png" id="19_w8qe1"]
-[ext_resource type="Texture2D" uid="uid://c0hafrk1yaxb6" path="res://assets/anim/dash1/frame0005.png" id="20_hdvrm"]
+[ext_resource type="Texture2D" uid="uid://dsienw6c55xfy" path="res://assets/anim/язык и дэш/dash/frame0000.png" id="16_0ncpa"]
+[ext_resource type="Texture2D" uid="uid://dgfaikoslvexk" path="res://assets/anim/язык и дэш/dash/frame0001.png" id="17_upxxc"]
+[ext_resource type="Texture2D" uid="uid://cq5y213bkxlb5" path="res://assets/anim/язык и дэш/dash/frame0002.png" id="18_ln3h3"]
+[ext_resource type="Texture2D" uid="uid://ctgc3al36qqoo" path="res://assets/anim/язык и дэш/dash/frame0003.png" id="19_uygh0"]
+[ext_resource type="Texture2D" uid="uid://lvorcn4om2lt" path="res://assets/anim/язык и дэш/dash/frame0004.png" id="20_t1aof"]
 [ext_resource type="Texture2D" uid="uid://22v8xymaj2i6" path="res://assets/anim/dash2/frame0000.png" id="21_t1aof"]
 [ext_resource type="Texture2D" uid="uid://be7xp0pmg4vrw" path="res://assets/anim/dash2/frame0001.png" id="22_w8qe1"]
 [ext_resource type="Texture2D" uid="uid://flmljr4fgeyn" path="res://assets/anim/dash2/frame0002.png" id="23_hdvrm"]
@@ -53,8 +52,17 @@
 [ext_resource type="Script" uid="uid://droecq0na1gb" path="res://scenes/player/dash_hitbox.gd" id="43_niom3"]
 [ext_resource type="Texture2D" uid="uid://o6yr21x0cny1" path="res://assets/misc/dash_particle.png" id="43_ttakn"]
 [ext_resource type="Script" uid="uid://c07lkve157ipa" path="res://scenes/player/tongue_hitbox.gd" id="46_iwuka"]
-[ext_resource type="Shader" uid="uid://c7k2qwh4kruuq" path="res://scenes/player/tongue_reveal.gdshader" id="47_ds1xl"]
-[ext_resource type="Texture2D" uid="uid://crub5hfqontjx" path="res://icon.svg" id="47_hyqqp"]
+[ext_resource type="Texture2D" uid="uid://b0737nb6nlvqo" path="res://assets/anim/язык и дэш/atk2/frame0000.png" id="48_hdvrm"]
+[ext_resource type="Texture2D" uid="uid://cv8a0bogre6fx" path="res://assets/anim/язык и дэш/atk2/frame0001.png" id="49_5xbmr"]
+[ext_resource type="Texture2D" uid="uid://swh5khsr181c" path="res://assets/anim/язык и дэш/atk2/frame0002.png" id="50_hir57"]
+[ext_resource type="Texture2D" uid="uid://p0cxclaoolil" path="res://assets/anim/язык и дэш/atk2/frame0003.png" id="51_7072n"]
+[ext_resource type="Texture2D" uid="uid://cat6aiaftri13" path="res://assets/anim/язык и дэш/atk2/frame0004.png" id="52_gmu8b"]
+[ext_resource type="Texture2D" uid="uid://dp2gsx1ib25op" path="res://assets/anim/язык и дэш/atk2/frame0005.png" id="53_a38bk"]
+[ext_resource type="Texture2D" uid="uid://dhgdcgu1dg4lv" path="res://assets/anim/язык и дэш/tongue/box.png" id="58_7072n"]
+[ext_resource type="Texture2D" uid="uid://c4oetncqmnygl" path="res://assets/anim/язык и дэш/tongue/frame0000.png" id="59_7072n"]
+[ext_resource type="Texture2D" uid="uid://2crtfiux87n2" path="res://assets/anim/язык и дэш/tongue/frame0001.png" id="60_gmu8b"]
+[ext_resource type="Texture2D" uid="uid://cs58htr0pu346" path="res://assets/anim/язык и дэш/tongue/frame0002.png" id="61_a38bk"]
+[ext_resource type="Texture2D" uid="uid://dnw4gvjcxlbal" path="res://assets/anim/язык и дэш/tongue/frame0003.png" id="62_3chqh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ln3h3"]
 shader = ExtResource("1_ln3h3")
@@ -82,22 +90,19 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("15_upxxc")
+"texture": ExtResource("16_0ncpa")
 }, {
 "duration": 1.0,
-"texture": ExtResource("16_ln3h3")
+"texture": ExtResource("17_upxxc")
 }, {
 "duration": 1.0,
-"texture": ExtResource("17_uygh0")
+"texture": ExtResource("18_ln3h3")
 }, {
 "duration": 1.0,
-"texture": ExtResource("18_t1aof")
+"texture": ExtResource("19_uygh0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("19_w8qe1")
-}, {
-"duration": 1.0,
-"texture": ExtResource("20_hdvrm")
+"texture": ExtResource("20_t1aof")
 }],
 "loop": 0,
 "name": &"dash1",
@@ -218,6 +223,29 @@ animations = [{
 "loop": 1,
 "name": &"move",
 "speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("48_hdvrm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_5xbmr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_hir57")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_7072n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_gmu8b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_a38bk")
+}],
+"loop": 1,
+"name": &"tongue",
+"speed": 6.0
 }]
 
 [sub_resource type="Animation" id="Animation_ln3h3"]
@@ -326,20 +354,42 @@ hue_variation_curve = SubResource("CurveTexture_w8qe1")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vo27k"]
 size = Vector2(328, 177)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1u1sw"]
-shader = ExtResource("47_ds1xl")
-shader_parameter/reveal_amount = 0.0
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
+animations = [{
+"frames": [],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("59_7072n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_gmu8b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_a38bk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_3chqh")
+}],
+"loop": 0,
+"name": &"tongue",
+"speed": 6.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ds1xl"]
 size = Vector2(20, 294.005)
 
 [node name="PlayerBody" type="CharacterBody2D" unique_id=699607311 groups=["player"]]
+z_index = 1
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_dovo2")
 speed = 800.0
-jump_velocity = -2000.0
-gravity = 1500.0
+jump_velocity = -2400.0
+gravity = 2000.0
 coyote_time = 0.2
 tongue_max_damage = 3
 tongue_max_charge_time = 1.5
@@ -378,9 +428,9 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_ln3h3")
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_75vfm")
-animation = &"idle"
+animation = &"tongue"
 autoplay = "idle"
-frame_progress = 0.748525
+frame_progress = 0.8846499
 
 [node name="FlashAnimation" type="AnimationPlayer" parent="AnimatedSprite2D" unique_id=1684054785]
 root_node = NodePath("../..")
@@ -391,7 +441,7 @@ position = Vector2(13.5, 43.5)
 shape = SubResource("RectangleShape2D_7obkq")
 
 [node name="BasicAttackHitbox" type="Area2D" parent="." unique_id=394788549 node_paths=PackedStringArray("damage_source")]
-position = Vector2(132, -49)
+position = Vector2(193, -23)
 collision_layer = 2
 collision_mask = 5
 monitoring = false
@@ -399,7 +449,6 @@ script = ExtResource("38_5q8fn")
 damage_source = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BasicAttackHitbox" unique_id=1714285793]
-position = Vector2(69.75, 12.5)
 shape = SubResource("RectangleShape2D_8qxvo")
 debug_color = Color(0.9844226, 0, 0.3494295, 0.41960785)
 
@@ -425,16 +474,15 @@ debug_color = Color(0, 0.636041, 0.41370875, 0.41960785)
 
 [node name="TummyMask" type="Sprite2D" parent="." unique_id=2088388252]
 clip_children = 1
-position = Vector2(589, 45)
-scale = Vector2(9.759998, 1)
-texture = ExtResource("47_hyqqp")
+position = Vector2(414, 24)
+texture = ExtResource("58_7072n")
 
-[node name="TongueSprite" type="Sprite2D" parent="TummyMask" unique_id=1736889924]
-visible = false
-material = SubResource("ShaderMaterial_1u1sw")
-position = Vector2(-120.389366, -20)
-scale = Vector2(1, 0.52)
-texture = ExtResource("47_hyqqp")
+[node name="TongueSprite" type="AnimatedSprite2D" parent="TummyMask" unique_id=543321667]
+position = Vector2(-356, -60)
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+animation = &"tongue"
+frame = 3
+frame_progress = 1.0
 
 [node name="TongueHitbox" type="Area2D" parent="." unique_id=1581850517]
 rotation = 0.0004187242

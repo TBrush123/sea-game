@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bumvmf72oryum" path="res://scenes/game_scene/checkpoint/checkpoint_trigger.gd" id="1_tvona"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hdg7s"]
-size = Vector2(90, 55)
+size = Vector2(1506, 855)
 
 [node name="CheckpointTrigger" type="Area2D" unique_id=1873226613]
 script = ExtResource("1_tvona")

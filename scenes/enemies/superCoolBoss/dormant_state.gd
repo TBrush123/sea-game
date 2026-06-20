@@ -1,7 +1,11 @@
 extends State
 
 func enter() -> void:
-    pass
+    player.sprite.play("idle")
+    player.velocity = Vector2.ZERO
 
 func exit() -> void:
     pass
+
+func activate() -> void:
+    state_machine.transition_to("IdleState")

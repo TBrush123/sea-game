@@ -7,7 +7,7 @@ extends CharacterBody2D
 @onready var hurt_sfx: AudioStreamPlayer2D = $HurtSFX
 @onready var dash_hitbox: Area2D = $DashHitbox
 @onready var dash_particles: GPUParticles2D = $DashParticles
-@onready var tongue_sprite: Sprite2D = $TummyMask/TongueSprite
+@onready var tongue_sprite: AnimatedSprite2D = $TummyMask/TongueSprite
 @onready var tongue_hitbox: Area2D = $TongueHitbox
 @onready var tummy_mask: Sprite2D = $TummyMask
 @onready var flash_animation: AnimationPlayer = $AnimatedSprite2D/FlashAnimation
@@ -27,7 +27,6 @@ extends CharacterBody2D
 @export var invincible_time: float = 5.0
 
 var can_dash: bool = true
-var camera: Camera2D
 var health: int
 var coyote_timer: float = 0.0
 var facing_direction: int = 1
@@ -37,7 +36,6 @@ var jumped: bool = false
 
 func _ready() -> void:
 	health = max_health
-	camera = $Camera2D
 
 func _physics_process(delta: float) -> void:
 	update_timers(delta)

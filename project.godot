@@ -101,6 +101,7 @@ enabled=PackedStringArray("res://addons/dialogic/plugin.cfg", "res://addons/maaa
 player=""
 enemy=""
 tutorial_prompt=""
+audio=""
 
 [gui]
 

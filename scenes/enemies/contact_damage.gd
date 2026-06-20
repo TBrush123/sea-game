@@ -12,7 +12,8 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
     if body.is_in_group("player") and body.has_method("take_hit"):
-        var direction = -1 if body.global_position.x <= global_position.x else 1
-        body.take_hit(damage, Vector2(direction, 0) * knockback_force)
+        if not body.is_invincible:
+            var direction = -1 if body.global_position.x <= global_position.x else 1
+            body.take_hit(damage, Vector2(direction, 0) * knockback_force)
 
     

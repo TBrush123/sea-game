@@ -18,6 +18,8 @@ func _ready() -> void:
 	
 	current_state = initial_state
 	await player.ready
+	if player.sprite.material:
+		player.sprite.material = player.sprite.material.duplicate()
 	current_state.enter()
 
 func _physics_process(delta: float) -> void:

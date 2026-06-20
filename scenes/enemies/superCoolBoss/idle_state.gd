@@ -1,12 +1,13 @@
 extends State
 
-@export var idle_duration: float = 5.0
+@export var idle_duration: float = 1.5
 
 var timer: float = 0.0
 var direction: int = -1
 
 func enter() -> void:
-	#player.sprite.play("idle")
+	player.sprite.play("idle")
+	player.velocity.x = 0
 	timer = 0.0
 
 func physics_update(delta: float) -> void:
@@ -14,7 +15,7 @@ func physics_update(delta: float) -> void:
 	player.move_and_slide()
 	timer += delta
 
-	if timer < idle_duration:
+	if timer < idle_duration * player.get_attack_speed_multiplier():
 		return
 	
 	var target = _get_player()
@@ -22,21 +23,22 @@ func physics_update(delta: float) -> void:
 		return
 	
 	direction = sign(player.global_position.x - target.global_position.x)
+	player.update_facing(direction)
 
 	player.velocity.x = player.move_speed * direction
 	
 	var dist = abs(target.global_position.x - player.global_position.x)
 
-	if player.phase == 1:
-		if dist < 1000:
-			_telegraph("SlamState")
-		else:
-			_telegraph("StompState")
+	if dist > 3000:
+		state_machine.transition_to("WalkState")
+		return
+	
+	if dist < 1000:
+		_telegraph("SlamState")
+	elif dist < 2000:
+		_telegraph("InkAttackState")
 	else:
-		var roll = randi() % 2
-		match roll:
-			0: _telegraph("SlamState")
-			1: _telegraph("StompState")
+		_telegraph("StompState")
 
 func _telegraph(next_state: String) -> void:
 	state_machine.states["TelegraphState"].next_state = next_state
