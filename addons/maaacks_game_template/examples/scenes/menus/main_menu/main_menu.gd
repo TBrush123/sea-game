@@ -35,6 +35,13 @@ func _ready() -> void:
 	super._ready()
 	_add_level_select_if_set()
 	_show_continue_if_set()
+	
+	var hand = $Character/Hand
+	var button_container = %MenuButtonsBoxContainer
+	for child in button_container.get_children():
+		if child is Button:
+			print("Holaaaaa")
+			child.mouse_entered.connect(func(): hand.target_button = child)
 
 func _on_continue_game_button_pressed() -> void:
 	GameStateExample.continue_game()

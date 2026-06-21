@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://crub5hfqontjx" path="res://icon.svg" id="1_byi80"]
 [ext_resource type="Script" uid="uid://b0booe1hhg2k7" path="res://scenes/enemies/superCoolBoss/super_cool_boss.gd" id="1_fl5py"]
+[ext_resource type="Shader" uid="uid://dld7m41eenbvm" path="res://scenes/player/flash_shader.gdshader" id="2_c0ity"]
 [ext_resource type="Script" uid="uid://dl6eom082crip" path="res://scripts/hitbox.gd" id="2_esgye"]
 [ext_resource type="Texture2D" uid="uid://bcqi0dxcldeft" path="res://assets/boss/anim boss/attack 1/frame0000.png" id="2_wmo2s"]
 [ext_resource type="Texture2D" uid="uid://dl7vm5x5y58no" path="res://assets/boss/anim boss/idle-run/frame0000.png" id="3_0vuhe"]
@@ -34,26 +35,16 @@
 [ext_resource type="Texture2D" uid="uid://4ch3yiijrgb5" path="res://assets/boss/anim boss/attack 2/ink/frame0000.png" id="30_uuloq"]
 [ext_resource type="Texture2D" uid="uid://iqwkrtfpehu4" path="res://assets/boss/anim boss/attack 2/ink/frame0001.png" id="31_b2y25"]
 [ext_resource type="Texture2D" uid="uid://db0lufjxcdjt3" path="res://assets/boss/anim boss/attack 2/ink/frame0002.png" id="32_ja2lk"]
+[ext_resource type="Script" uid="uid://cwj0ehq4mp4yr" path="res://scenes/enemies/superCoolBoss/phase_transition_state.gd" id="32_sw5r8"]
 [ext_resource type="Texture2D" uid="uid://u3c7f1751qiv" path="res://assets/boss/anim boss/attack 2/ink/frame0003.png" id="33_ekrvh"]
 [ext_resource type="Texture2D" uid="uid://h3d80xfxj5ci" path="res://assets/boss/anim boss/attack 2/ink/frame0004.png" id="34_sw5r8"]
 [ext_resource type="Texture2D" uid="uid://3dxxukl8bsbu" path="res://assets/boss/anim boss/attack 2/ink/frame0005.png" id="35_c0ity"]
 [ext_resource type="Texture2D" uid="uid://ir2srjgwwpts" path="res://assets/boss/anim boss/attack 2/ink/frame0006.png" id="36_rl6uv"]
 [ext_resource type="Script" uid="uid://b08tq18cyd2ii" path="res://scenes/enemies/contact_damage.gd" id="37_b2y25"]
+[ext_resource type="AudioStream" uid="uid://dwfwqjpwy7qvg" path="res://assets/sfx/mixkit-heavy-sword-smashes-metal-2795.wav" id="42_rl6uv"]
 
-[sub_resource type="Shader" id="Shader_ekrvh"]
-code = "shader_type canvas_item;
-
-uniform vec4 flash_color : source_color;
-uniform float flash_value : hint_range(0.0, 1.0, 0.1);
-
-void fragment() {
-	vec4 texture_color = texture(TEXTURE, UV);
-	COLOR = mix(texture_color, flash_color, flash_value);
-	COLOR.a = texture_color.a;
-}	"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sw5r8"]
-shader = SubResource("Shader_ekrvh")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c0ity"]
+shader = ExtResource("2_c0ity")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_value = 0.0
 
@@ -157,6 +148,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_uygh0"]
 resource_name = "hit_animation"
 length = 0.5
+loop_mode = 1
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -172,20 +164,19 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_aa45k"]
 resource_name = "hit_animation_enemy"
 length = 0.5
-tracks/0/type = "value"
+tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/flash_value")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [1.0, 0.0, 0.0]
+"handle_modes": PackedInt32Array(0, 2, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.041666668, -0.16666667, 0, 0, 0, -0.041666668, 0.16666667, 0, 0),
+"times": PackedFloat32Array(0, 0.25, 0.5)
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ekrvh"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c0ity"]
 _data = {
 &"RESET": SubResource("Animation_ln3h3"),
 &"hit_animation": SubResource("Animation_uygh0"),
@@ -225,7 +216,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("36_rl6uv")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"default",
 "speed": 9.0
 }, {
@@ -240,17 +231,18 @@ size = Vector2(1427, 683)
 
 [node name="SuperCoolBoss" type="CharacterBody2D" unique_id=1491804352]
 script = ExtResource("1_fl5py")
+move_speed = 500.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=890219416]
-material = SubResource("ShaderMaterial_sw5r8")
+material = SubResource("ShaderMaterial_c0ity")
 sprite_frames = SubResource("SpriteFrames_fl5py")
 animation = &"attack1"
 frame = 9
 frame_progress = 1.0
 
-[node name="FlashAnimation" type="AnimationPlayer" parent="AnimatedSprite2D" unique_id=1146747728]
+[node name="FlashAnimation" type="AnimationPlayer" parent="AnimatedSprite2D" unique_id=1397448101]
 root_node = NodePath("../..")
-libraries/ = SubResource("AnimationLibrary_ekrvh")
+libraries/ = SubResource("AnimationLibrary_c0ity")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1182958374]
 position = Vector2(3, 116)
@@ -280,6 +272,9 @@ script = ExtResource("5_4h52x")
 
 [node name="SlamState" type="Node" parent="StateMachine" unique_id=1287639327]
 script = ExtResource("6_ncple")
+slam_speed = 1600.0
+slam_duration = 2.0
+windup_time = 0.5
 
 [node name="StompState" type="Node" parent="StateMachine" unique_id=464830210]
 script = ExtResource("7_6ou8a")
@@ -287,6 +282,7 @@ shockwave_scene = ExtResource("8_eja1i")
 
 [node name="IdleState" type="Node" parent="StateMachine" unique_id=1515428040]
 script = ExtResource("8_qq8eo")
+idle_duration = 2.4
 
 [node name="DormantState" type="Node" parent="StateMachine" unique_id=2104587573]
 script = ExtResource("10_12p0f")
@@ -296,6 +292,12 @@ script = ExtResource("30_ekrvh")
 
 [node name="WalkState" type="Node" parent="StateMachine" unique_id=690825563]
 script = ExtResource("30_ja2lk")
+
+[node name="PhaseTransitionState" type="Node" parent="StateMachine" unique_id=1861934790]
+script = ExtResource("32_sw5r8")
+slam_count = 4
+slam_speed_increase = 0.15
+shockwave_scene = ExtResource("8_eja1i")
 
 [node name="ContactDamage" type="Area2D" parent="." unique_id=228854897]
 collision_layer = 4
@@ -319,9 +321,31 @@ script = ExtResource("2_esgye")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Ink/InkArea" unique_id=1694273586]
 sprite_frames = SubResource("SpriteFrames_g4v7s")
-frame_progress = 0.24234307
+frame_progress = 0.821366
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ink/InkArea" unique_id=710592394]
 position = Vector2(67.5, 160.5)
 shape = SubResource("RectangleShape2D_g4v7s")
 debug_color = Color(0.28431106, 0.0009732038, 0.60536206, 0.41960785)
+
+[node name="InkArea2" type="Area2D" parent="Ink" unique_id=351686542]
+visible = false
+position = Vector2(1572, 123)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("2_esgye")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Ink/InkArea2" unique_id=452135717]
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+frame_progress = 0.821366
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ink/InkArea2" unique_id=1764397394]
+position = Vector2(67.5, 160.5)
+shape = SubResource("RectangleShape2D_g4v7s")
+debug_color = Color(0.28431106, 0.0009732038, 0.60536206, 0.41960785)
+
+[node name="StompSFX" type="AudioStreamPlayer2D" parent="." unique_id=1204989297]
+stream = ExtResource("42_rl6uv")
+volume_db = -40.0
+bus = &"SFX"

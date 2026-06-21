@@ -38,3 +38,6 @@ func _process(delta: float) -> void:
 
 func shake(amount: float = 4.0) -> void:
 	shake_strength = amount
+
+func set_target(new_target: Node2D) -> void:
+	_target = new_target

@@ -57,13 +57,16 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("7_slsyk")
 }],
-"loop": 0,
+"loop": 2,
 "name": &"attack",
-"speed": 12.0
+"speed": 8.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_aa45k")
+}],
 "loop": 1,
-"name": &"new_animation",
+"name": &"idle",
 "speed": 5.0
 }, {
 "frames": [{
@@ -190,6 +193,7 @@ hue_variation_curve = SubResource("CurveTexture_qudvl")
 [node name="EnemyBase" type="CharacterBody2D" unique_id=369489654 groups=["enemy"]]
 collision_layer = 4
 script = ExtResource("1_qty17")
+max_health = 10
 move_speed = 80.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1928482650]
@@ -198,7 +202,7 @@ position = Vector2(-240, -127)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_qa0nx")
 animation = &"anticipate"
-frame_progress = 0.28696352
+frame_progress = 0.4863349
 
 [node name="FlashAnimation" type="AnimationPlayer" parent="AnimatedSprite2D" unique_id=902763617]
 root_node = NodePath("../..")
@@ -256,6 +260,7 @@ texture = ExtResource("7_ratdf")
 
 [node name="AlertSFX" type="AudioStreamPlayer2D" parent="." unique_id=2067262134]
 stream = ExtResource("8_78o78")
+volume_db = -80.0
 
 [node name="ContactDamage" type="Area2D" parent="." unique_id=586436551]
 collision_layer = 4

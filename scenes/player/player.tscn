@@ -42,7 +42,6 @@
 [ext_resource type="Script" uid="uid://dl6eom082crip" path="res://scripts/hitbox.gd" id="38_5q8fn"]
 [ext_resource type="Texture2D" uid="uid://dybamrxrpxxrr" path="res://assets/anim/run/run0002.png" id="38_jrbya"]
 [ext_resource type="Texture2D" uid="uid://bas531mpt6aqe" path="res://assets/anim/run/run0003.png" id="39_ahqnk"]
-[ext_resource type="AudioStream" uid="uid://bu0db61dr6i0v" path="res://assets/sfx/hurt.wav" id="39_wva7c"]
 [ext_resource type="Texture2D" uid="uid://c8gjvk5fckwu3" path="res://assets/anim/jump/frame0000.png" id="40_uygh0"]
 [ext_resource type="Texture2D" uid="uid://defatei1dq0j2" path="res://assets/anim/run/run0004.png" id="40_vb1ce"]
 [ext_resource type="Texture2D" uid="uid://cvgrrwudxjp8g" path="res://assets/anim/run/run0005.png" id="41_0ncpa"]
@@ -58,6 +57,7 @@
 [ext_resource type="Texture2D" uid="uid://p0cxclaoolil" path="res://assets/anim/язык и дэш/atk2/frame0003.png" id="51_7072n"]
 [ext_resource type="Texture2D" uid="uid://cat6aiaftri13" path="res://assets/anim/язык и дэш/atk2/frame0004.png" id="52_gmu8b"]
 [ext_resource type="Texture2D" uid="uid://dp2gsx1ib25op" path="res://assets/anim/язык и дэш/atk2/frame0005.png" id="53_a38bk"]
+[ext_resource type="AudioStream" uid="uid://kt8jrkug6q8c" path="res://assets/sfx/mixkit-boxer-getting-hit-2055.wav" id="55_7072n"]
 [ext_resource type="Texture2D" uid="uid://dhgdcgu1dg4lv" path="res://assets/anim/язык и дэш/tongue/box.png" id="58_7072n"]
 [ext_resource type="Texture2D" uid="uid://c4oetncqmnygl" path="res://assets/anim/язык и дэш/tongue/frame0000.png" id="59_7072n"]
 [ext_resource type="Texture2D" uid="uid://2crtfiux87n2" path="res://assets/anim/язык и дэш/tongue/frame0001.png" id="60_gmu8b"]
@@ -281,17 +281,16 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_aa45k"]
 resource_name = "hit_animation_enemy"
 length = 0.5
-tracks/0/type = "value"
+tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/flash_value")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [0.0, 1.0, 0.0]
+"handle_modes": PackedInt32Array(0, 2, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.041666668, -0.16666667, 0, 0, 0, -0.041666668, 0.16666667, 0, 0),
+"times": PackedFloat32Array(0, 0.25, 0.5)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ln3h3"]
@@ -347,8 +346,6 @@ scale_min = 0.5
 scale_max = 1.1999999
 scale_curve = SubResource("CurveTexture_rw8a5")
 color_ramp = SubResource("GradientTexture1D_rw8a5")
-hue_variation_min = -0.15000002
-hue_variation_max = 0.14999998
 hue_variation_curve = SubResource("CurveTexture_w8qe1")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vo27k"]
@@ -387,7 +384,7 @@ z_index = 1
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_dovo2")
-speed = 800.0
+speed = 1200.0
 jump_velocity = -2400.0
 gravity = 2000.0
 coyote_time = 0.2
@@ -430,7 +427,7 @@ scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_75vfm")
 animation = &"tongue"
 autoplay = "idle"
-frame_progress = 0.8846499
+frame_progress = 0.64480144
 
 [node name="FlashAnimation" type="AnimationPlayer" parent="AnimatedSprite2D" unique_id=1684054785]
 root_node = NodePath("../..")
@@ -453,7 +450,9 @@ shape = SubResource("RectangleShape2D_8qxvo")
 debug_color = Color(0.9844226, 0, 0.3494295, 0.41960785)
 
 [node name="HurtSFX" type="AudioStreamPlayer2D" parent="." unique_id=648284756]
-stream = ExtResource("39_wva7c")
+stream = ExtResource("55_7072n")
+volume_db = -40.0
+bus = &"SFX"
 
 [node name="DashParticles" type="GPUParticles2D" parent="." unique_id=2009205971]
 emitting = false
@@ -478,6 +477,7 @@ position = Vector2(414, 24)
 texture = ExtResource("58_7072n")
 
 [node name="TongueSprite" type="AnimatedSprite2D" parent="TummyMask" unique_id=543321667]
+visible = false
 position = Vector2(-356, -60)
 sprite_frames = SubResource("SpriteFrames_g4v7s")
 animation = &"tongue"

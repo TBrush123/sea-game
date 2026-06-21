@@ -18,6 +18,9 @@ var facing_direction: int = -1
 @onready var death_particles: GPUParticles2D = $DeathParticles
 @onready var shockwave_marker: Marker2D = $ShockwaveMarker
 @onready var ink: Node2D = $Ink
+@onready var flash_animation: AnimationPlayer = $AnimatedSprite2D/FlashAnimation
+@onready var contact_damage: Area2D = $ContactDamage
+@onready var stomp_sfx: AudioStreamPlayer2D = $StompSFX
 
 func _ready() -> void:
 	health = max_health
@@ -26,12 +29,10 @@ func apply_gravity(delta: float, gravity_scale: float = 1.0) -> void:
 	velocity.y += gravity * delta * gravity_scale
 
 func _physics_process(delta: float) -> void:
-	print(state_machine.current_state.name)
 	apply_gravity(delta)
 
 func take_hit(damage: int, knockback: Vector2) -> void:
 	health -= damage
-	velocity += knockback
 
 	modulate = Color.RED
 	var tween = create_tween()
@@ -41,6 +42,7 @@ func take_hit(damage: int, knockback: Vector2) -> void:
 	if player.facing_direction == facing_direction:
 		update_facing(facing_direction * -1)
 
+	flash_animation.play("hit_animation_enemy")
 	if health > 0:
 		get_viewport().get_camera_2d().shake(4.0)
 		HitStop.freeze()
@@ -52,7 +54,9 @@ func take_hit(damage: int, knockback: Vector2) -> void:
 		return
 		
 	if health <= int(max_health * phase2_threshold) and phase == 1:
+		phase = 2
 		state_machine.transition_to("PhaseTransitionState")
+
 		return
 	
 	 

@@ -143,7 +143,7 @@ size = Vector2(348, 312)
 size = Vector2(326, 474)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o0enl"]
-size = Vector2(250, 397)
+size = Vector2(250, 441)
 
 [sub_resource type="Curve" id="Curve_oi0c7"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.2572614, 0.94382024), -0.25789255, -0.25789255, 0, 0, Vector2(0.7178423, 0.23595512), -1.3539324, -1.3539324, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -184,6 +184,7 @@ hue_variation_curve = SubResource("CurveTexture_qudvl")
 [node name="SwordFish" type="CharacterBody2D" unique_id=114974541 node_paths=PackedStringArray("raycast") groups=["enemy"]]
 collision_layer = 4
 script = ExtResource("1_vmihk")
+max_health = 6
 move_speed = 120.0
 raycast = NodePath("RayCast2D")
 metadata/_custom_type_script = "uid://dwqi5oyepmvls"
@@ -192,9 +193,7 @@ metadata/_custom_type_script = "uid://dwqi5oyepmvls"
 position = Vector2(0, -87)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_o0enl")
-animation = &"f_dash"
-frame = 1
-frame_progress = 1.0
+animation = &"f_walk"
 
 [node name="FlashAnimation" type="AnimationPlayer" parent="AnimatedSprite2D" unique_id=1639323143]
 root_node = NodePath("../..")
@@ -234,7 +233,7 @@ shape = SubResource("RectangleShape2D_oi0c7")
 debug_color = Color(0.98558336, 0, 0.3369638, 0.41960785)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1259363343]
-position = Vector2(0, -69.5)
+position = Vector2(0, -47.5)
 shape = SubResource("RectangleShape2D_o0enl")
 
 [node name="DeathParticles" type="GPUParticles2D" parent="." unique_id=764320907]

@@ -3,8 +3,15 @@ extends State
 @export var telegraph_duration: float = 1.2
 @export var next_state: String = "SlamState"
 
+const STATE_ANIMATIONS: Dictionary = {
+	"SlamState": "idle",
+	"StompState": "attack1",
+	"InkAttackState": "attack2"
+}
+
 var timer: float = 0.0
 var telegraph_tween: Tween
+var frame_tween: Tween
 
 func enter() -> void:
 	#player.sprite.play("telegraph")
@@ -20,10 +27,13 @@ func enter() -> void:
 	telegraph_tween.tween_property(player, "position:x", player.position.x - 10, 0.05)
 	telegraph_tween.play()
 
+
 func exit() -> void:
 	if telegraph_tween != null:
 		telegraph_tween.kill()
 		player.position.x = round(player.position.x)
+	if frame_tween:
+		frame_tween.kill()
 
 func physics_update(delta: float) -> void:
 	player.apply_gravity(delta)

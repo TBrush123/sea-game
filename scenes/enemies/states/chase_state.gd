@@ -31,11 +31,12 @@ func physics_update(delta: float) -> void:
 
 	if distance <= attack_range and attack_timer <= 0:
 		print("I'm ATTACKING!!!!")
+
 		state_machine.transition_to("AttackState")
 		return
 	elif distance <= attack_range:
 		player.velocity.x = 0
-		player.sprite.stop()
+		player.sprite.play("idle")
 	else:
 		player.sprite.play("walk")
 

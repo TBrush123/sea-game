@@ -1,0 +1,178 @@
+[gd_scene format=3 uid="uid://conoq2gmylqvr"]
+
+[ext_resource type="PackedScene" uid="uid://c6k5nnpbypshi" path="res://addons/maaacks_game_template/base/nodes/menus/main_menu/main_menu.tscn" id="1_ub2bi"]
+[ext_resource type="Script" uid="uid://u3hoafvcejmm" path="res://scenes/menus/cool/main_menu/main_menu.gd" id="2_x31ro"]
+[ext_resource type="PackedScene" uid="uid://mhk7ai1jtttm" path="res://scenes/windows/main_menu_options_window.tscn" id="3_0jpat"]
+[ext_resource type="PackedScene" uid="uid://cp17hg625yex" path="res://scenes/game_scene/world/world.tscn" id="3_i7b34"]
+[ext_resource type="PackedScene" uid="uid://dnaejbfe1nvn1" path="res://scenes/windows/main_menu_credits_window.tscn" id="4_m0ubd"]
+[ext_resource type="Texture2D" uid="uid://d3ivhp30pv6wk" path="res://scenes/menus/cool/main_menu/assets/bg.png" id="5_7j6ce"]
+[ext_resource type="PackedScene" uid="uid://cwt4p3bufkke5" path="res://addons/maaacks_game_template/base/nodes/windows/confirmation_overlaid_window.tscn" id="5_627ab"]
+[ext_resource type="AudioStream" uid="uid://clm4hrvpkcm56" path="res://assets/sfx/freesound_community-beach-ambience-with-light-waves-and-a-boat-in-the-distance-54794.mp3" id="6_1ok8q"]
+[ext_resource type="Texture2D" uid="uid://digwu3ci55jon" path="res://assets/misc/logo (1).png" id="6_38nmd"]
+[ext_resource type="Texture2D" uid="uid://ladbxnfy41gc" path="res://scenes/menus/cool/main_menu/assets/Без названия45_20260621002849.png" id="6_627ab"]
+[ext_resource type="Shader" uid="uid://chugtxr01gkm0" path="res://scenes/menus/cool/main_menu/glitch_shader.gdshader" id="7_7j6ce"]
+[ext_resource type="Theme" uid="uid://2qh3aix7i37a" path="res://resources/themes/gravity.tres" id="7_8opqa"]
+[ext_resource type="Texture2D" uid="uid://6x1ic4iyslx4" path="res://scenes/menus/cool/main_menu/assets/Без названия73_20260619215051.png" id="7_m0ubd"]
+[ext_resource type="Script" uid="uid://cu2jioehmam0v" path="res://scenes/menus/cool/main_menu/hand.gd" id="8_7j6ce"]
+[ext_resource type="FontFile" uid="uid://dhc5tkuyr5w7r" path="res://assets/misc/Punktype.ttf" id="8_i7b34"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yf5fn"]
+shader = ExtResource("7_7j6ce")
+shader_parameter/shake_power = 0.005
+shader_parameter/shake_rate = 0.0010000000475
+shader_parameter/shake_speed = 10.0
+shader_parameter/shake_block_size = 10000.0
+shader_parameter/shake_color_rate = 0.010000000475
+
+[node name="MainMenu" unique_id=1058120615 instance=ExtResource("1_ub2bi")]
+script = ExtResource("2_x31ro")
+level_select_packed_scene = ExtResource("3_i7b34")
+confirm_new_game = false
+game_scene_path = "uid://cp17hg625yex"
+options_packed_scene = ExtResource("3_0jpat")
+credits_packed_scene = ExtResource("4_m0ubd")
+
+[node name="BackgroundMusicPlayer" parent="." index="1" unique_id=1141822549]
+stream = ExtResource("6_1ok8q")
+volume_db = -40.0
+
+[node name="BackgroundTextureRect" parent="." index="2" unique_id=1940176448]
+texture = ExtResource("5_7j6ce")
+
+[node name="TitleLabel" parent="MenuContainer/TitleMargin/TitleContainer" parent_id_path=PackedInt32Array(556427956) index="0" unique_id=359406872]
+visible = false
+offset_left = -244.0
+offset_top = 139.0
+offset_right = -244.0
+offset_bottom = 206.0
+text = ""
+
+[node name="TextureRect" type="TextureRect" parent="MenuContainer/TitleMargin/TitleContainer" parent_id_path=PackedInt32Array(556427956) index="1" unique_id=1899771205]
+layout_mode = 0
+offset_left = 238.0
+offset_top = 105.0
+offset_right = 871.0
+offset_bottom = 293.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_38nmd")
+
+[node name="SubTitleLabel" parent="MenuContainer/SubTitleMargin/SubTitleContainer" parent_id_path=PackedInt32Array(930520368) index="0" unique_id=1037003361]
+offset_left = -247.0
+offset_top = 197.0
+offset_right = -247.0
+offset_bottom = 231.0
+text = ""
+
+[node name="MenuButtonsMargin" parent="MenuContainer" parent_id_path=PackedInt32Array(396616752) index="2" unique_id=210553886]
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 140
+theme_override_constants/margin_bottom = 180
+
+[node name="MenuButtonsBoxContainer" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer" parent_id_path=PackedInt32Array(116448484) index="0" unique_id=2017477786]
+anchors_preset = -1
+anchor_left = 0.18800001
+anchor_top = 0.46800002
+anchor_right = 0.46100003
+anchor_bottom = 0.88600004
+offset_left = 3.3599854
+offset_top = 7.039978
+offset_right = -7.080017
+offset_bottom = -6.920044
+
+[node name="MenuButtonsBoxContainer#NewGameButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" index="0" unique_id=2044537792]
+unique_name_in_owner = true
+layout_mode = 2
+offset_transform_enabled = true
+theme = ExtResource("7_8opqa")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 0.24100001)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 0.64500004)
+theme_override_fonts/font = ExtResource("8_i7b34")
+theme_override_font_sizes/font_size = 28
+text = "New Game"
+flat = true
+
+[node name="MenuButtonsBoxContainer#OptionsButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" index="1" unique_id=1486236076]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("7_8opqa")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 0.24100001)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 0.64500004)
+theme_override_fonts/font = ExtResource("8_i7b34")
+theme_override_font_sizes/font_size = 28
+text = "Options"
+flat = true
+
+[node name="MenuButtonsBoxContainer#CreditsButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" index="2" unique_id=301223169]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 0.24100001)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 0.64500004)
+theme_override_fonts/font = ExtResource("8_i7b34")
+theme_override_font_sizes/font_size = 28
+text = "Credits"
+flat = true
+
+[node name="MenuButtonsBoxContainer#ExitButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" index="3" unique_id=1750454379]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 0.24100001)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 0.64500004)
+theme_override_fonts/font = ExtResource("8_i7b34")
+theme_override_font_sizes/font_size = 28
+text = "Exit"
+flat = true
+
+[node name="VersionLabel" parent="VersionMargin/VersionContainer" parent_id_path=PackedInt32Array(1603969262) index="0" unique_id=793266470]
+text = "v0.1.0"
+
+[node name="NewGameConfirmation" parent="." index="5" unique_id=613417993 instance=ExtResource("5_627ab")]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(420, 200)
+layout_mode = 1
+offset_left = -210.0
+offset_top = -100.0
+offset_right = 210.0
+offset_bottom = 100.0
+text = "Are you sure you want to start a new game?
+
+All progress in the current game will be lost."
+title = "New Game"
+
+[node name="Character" type="Node2D" parent="." index="7" unique_id=572352340]
+
+[node name="Hand" type="Sprite2D" parent="Character" index="0" unique_id=1998485360]
+position = Vector2(1053.9999, 746.9999)
+rotation = 3.9427676
+scale = Vector2(0.45, 0.49999997)
+texture = ExtResource("6_627ab")
+offset = Vector2(452.71863, 2.2520752)
+script = ExtResource("8_7j6ce")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character" index="1" unique_id=1417368573]
+material = SubResource("ShaderMaterial_yf5fn")
+position = Vector2(640, 360)
+scale = Vector2(0.50000006, 0.50000006)
+texture = ExtResource("7_m0ubd")
+
+[node name="Label" type="Label" parent="." index="8" unique_id=1930698273]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("8_i7b34")
+theme_override_font_sizes/font_size = 64
+text = "Press ENTER to start"
+
+[connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/MenuButtonsBoxContainer#NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/MenuButtonsBoxContainer#OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/MenuButtonsBoxContainer#CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/MenuButtonsBoxContainer#ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="confirmed" from="NewGameConfirmation" to="." method="_on_new_game_confirmation_confirmed"]

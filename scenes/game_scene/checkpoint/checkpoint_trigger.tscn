@@ -6,6 +6,7 @@
 size = Vector2(1506, 855)
 
 [node name="CheckpointTrigger" type="Area2D" unique_id=1873226613]
+collision_mask = 15
 script = ExtResource("1_tvona")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1346636566]

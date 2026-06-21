@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://epgllqu61dbv"]
+
+[ext_resource type="Script" uid="uid://3ko861p7a1oy" path="res://scenes/UI/health_ui.gd" id="1_55djp"]
+[ext_resource type="Texture2D" uid="uid://dubx0jtkc3bbj" path="res://assets/misc/life.png" id="2_4cxe6"]
+
+[node name="HealthUI" type="HBoxContainer" unique_id=867149406]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_55djp")
+heart_texture = ExtResource("2_4cxe6")
+heart_size = Vector2(16, 16)

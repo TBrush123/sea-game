@@ -106,10 +106,7 @@ func _hide_credits_if_unset() -> void:
 		credits_button.hide()
 
 func _ready() -> void:
-	_hide_exit_for_web()
-	_hide_options_if_unset()
-	_hide_credits_if_unset()
-	_hide_new_game_if_unset()
+	pass
 
 func _on_new_game_button_pressed() -> void:
 	new_game()

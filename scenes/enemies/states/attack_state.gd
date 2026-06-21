@@ -1,8 +1,8 @@
 extends State
 
 @export var windup_delay: float = 0.2
-@export var anticipation_time: float = 0.2
-@export var attack_duration: float = 0.4
+@export var anticipation_time: float = 0.5
+@export var attack_duration: float = 1.25
 
 var attack_done: bool = false
 var attack_timer: float = 0.0
@@ -13,7 +13,6 @@ var attacking: bool = false
 func enter() -> void:
 	player.sprite.play("anticipate")
 	player.sprite.speed_scale = 1.0
-	player.sprite.stop()
 	anticipation_timer = anticipation_time
 	attack_timer = 0.0
 	hitbox_enabled = false

@@ -1,6 +1,5 @@
-[background arg="res://assets/menu/photo_5307765471560015368_x.jpg" fade="0.0"]
 The swordfish-like creature fell. It was fast, very fast. But there is always a bigger fish.
-SadaFish: Pathetic. However... I can learn something from it, right?
-join swordfish right [animation="Bounce In" wait="true"]
-SadaFish: Dash. Hm... In principle, I can do something similar, it should help if I meet someone else.
+join SadaFish (Neutral) center
+SadaFish (Neutral): Pathetic. However... I can learn something from it, right?
+SadaFish (Neutral): Dash. Hm... In principle, I can do something similar, it should help if I meet someone else.
 Dash acquired

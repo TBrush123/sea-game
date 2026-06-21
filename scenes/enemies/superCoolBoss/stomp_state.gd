@@ -17,6 +17,7 @@ func _check_needed_frame() -> void:
 	if player.sprite.get_frame() == 7 and not shot_shockwaves:
 		shot_shockwaves = true
 		_spawn_shockwaves()
+		player.stomp_sfx.play()
 
 
 func physics_update(delta: float) -> void:
@@ -30,9 +31,8 @@ func _spawn_shockwaves() -> void:
 	get_viewport().get_camera_2d().shake(30.0)
 	HitStop.freeze(0.08, 0.05)
 
-	for dir in [-1, 1]:
-		var shockwave = shockwave_scene.instantiate()
-		shockwave.global_position = player.shockwave_marker.global_position
-		shockwave.direction = dir
-		shockwave.speed *= player.get_speed_multiplier()
-		get_tree().current_scene.add_child(shockwave)
+	var shockwave = shockwave_scene.instantiate()
+	shockwave.global_position = player.shockwave_marker.global_position
+	shockwave.direction = player.facing_direction
+	shockwave.speed *= player.get_speed_multiplier()
+	get_tree().current_scene.add_child(shockwave)

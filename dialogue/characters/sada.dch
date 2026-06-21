@@ -10,18 +10,27 @@
 "style": "",
 "suffix": ""
 },
-&"default_portrait": "idle",
+&"default_portrait": "neutral",
 &"description": "",
 &"display_name": "Sada",
 &"mirror": false,
 &"nicknames": [""],
 &"offset": Vector2(0, 0),
 &"portraits": {
-"idle": {
+"angyy": {
 "export_overrides": {
-"image": "\"res://dialogue/characters/images (22).jpg\""
+"image": "\"res://dialogue/characters/sprites/human2.png\""
 },
-"mirror": false,
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"neutral": {
+"export_overrides": {
+"image": "\"res://dialogue/characters/sprites/human1.png\""
+},
+"mirror": true,
 "offset": Vector2(0, 0),
 "scale": 1,
 "scene": ""

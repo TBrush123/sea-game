@@ -1,37 +1,42 @@
-# Attribution
-## Collaborators
+[center][font_size=56][b]TideMolt[/b][/font_size][/center]
+[center][font_size=20]A Godot Wild Jam #94 Entry[/font_size][/center]
 
-### Godot Game Template
-![Maaack Plugin Icon](/assets/plugin_logo/logo.png)  
-Author: [Marek Belski and contributors](https://github.com/Maaack/Godot-Game-Template/graphs/contributors)  
-Source: [github: Godot-Game-Template](https://github.com/Maaack/Godot-Game-Template)  
-License: [MIT License](LICENSE.txt)  
+[center]─────────────────────────────[/center]
 
-## Sourced
-#### Godot Engine Logo
-Author: Andrea Calabró  
-Source: [godotengine.org : press](https://godotengine.org/press/)  
-License: [CC BY 4.0 International](https://github.com/godotengine/godot/blob/master/LOGO_LICENSE.txt) 
+[center][font_size=40][b]Team SAD[/b][/font_size][/center]
+[center][img=100]res://assets/misc/sad team logo (1).png[/img][/center]
 
-#### Git Logo
-Author: [Jason Long](https://bsky.app/profile/jasonlong.me)  
-Source: [git-scm.com : logos](https://git-scm.com/downloads/logos)  
-License: [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) 
+[center][font_size=24][b]TBrush123[/b][/font_size]
+Lead Programmer · Level & Game Designer[/center]
 
-## Tools
-#### Godot
-![Godot Engine Logo](/assets/godot_engine_logo/logo_vertical_color_dark.png)  
-Author: [Juan Linietsky, Ariel Manzur, and contributors](https://godotengine.org/contact)  
-Source: [godotengine.org](https://godotengine.org/)  
-License: [MIT License](https://github.com/godotengine/godot/blob/master/LICENSE.txt)  
+[center][font_size=24][b]Woll4ri[/b][/font_size]
+Lead Artist · SFX & Music Designer · Monster Designer[/center]
 
-#### Visual Studio Code
-Author: [Microsoft](https://opensource.microsoft.com/)  
-Source: [github: vscode](https://github.com/microsoft/vscode)  
-License: [MIT License](https://github.com/microsoft/vscode/blob/main/LICENSE.txt)
+[center][font_size=24][b]Lyaguha[/b][/font_size]
+Main Menu Artist · Code Assistant · Human Designer[/center]
 
-#### Git
-![Git Logo](/assets/git_logo/Git-Logo-2Color.png)  
-Author: [Linus Torvalds](https://github.com/torvalds)  
-Source: [git-scm.com](https://git-scm.com/downloads)  
-License: [GNU General Public License version 2](https://opensource.org/licenses/GPL-2.0)
+[center]─────────────────────────────[/center]
+
+[center][font_size=40][b]Game Jam[/b][/font_size][/center]
+
+[center][font_size=22]Godot Wild Jam #94[/font_size]
+[url=https://godotwildjam.com]godotwildjam.com[/url]
+[img=80]res://assets/misc/Wildling_head_only.svg[/img][/center]
+
+[center]─────────────────────────────[/center]
+
+[center][font_size=40][b]Special Thanks[/b][/font_size][/center]
+
+[center][font_size=22]Godot Game Template[/font_size]
+Marek Belski and contributors
+[url=https://github.com/Marek-Belski/Godot-Game-Template]github.com · Godot-Game-Template[/url]
+MIT License[/center]
+
+[center][font_size=22]Godot Engine[/font_size]
+Juan Linietsky, Ariel Manzur, and contributors
+[url=https://godotengine.org]godotengine.org[/url]
+MIT License[/center]
+
+[center]─────────────────────────────[/center]
+
+[center][font_size=18][i]Made with Godot 4[/i][/font_size][/center]

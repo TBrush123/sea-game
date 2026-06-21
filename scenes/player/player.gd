@@ -1,6 +1,8 @@
 class_name Player
 extends CharacterBody2D
 
+signal health_changed(new_health: int)
+
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var state_machine: StateMachine = $StateMachine
 @onready var basic_attack_hitbox: Area2D = $BasicAttackHitbox
@@ -72,28 +74,30 @@ func update_facing(direction: float) -> void:
 func set_movement_locked(locked: bool) -> void:
 	state_machine.set_physics_process(locked == false)
 	state_machine.set_process_unhandled_input(locked == false)
+	is_invincible = true
 	if locked:
 		velocity.x = 0
 		
 func take_hit(damage: int, knockback: Vector2) -> void:
 	if is_invincible:
 		return
-	
+
 	health -= damage
+	health_changed.emit(health)
 	velocity += knockback
-	print("knockback:", knockback, " velocity:", velocity)
 	state_machine.transition_to("HurtState")
 	get_viewport().get_camera_2d().shake(8.0)
+	hurt_sfx.play()
 
 		
 		
-	is_invincible = true
 
 	if health <= 0:
 		die()
-	else: 
-		invincibility_timer = invincible_time
-	
+		return
+
+	is_invincible = true
+	invincibility_timer = invincible_time
 	flash_animation.play("hit_animation")
 
 func die() -> void:
@@ -109,3 +113,8 @@ func die() -> void:
 	set_movement_locked(false)
 	is_invincible = false
 	state_machine.transition_to("IdleState")
+
+func fling(knockback: Vector2) -> void:
+	state_machine.set_physics_process(true)
+	velocity += knockback
+	state_machine.transition_to("HurtState")

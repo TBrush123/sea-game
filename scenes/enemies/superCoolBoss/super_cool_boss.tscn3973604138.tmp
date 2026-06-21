@@ -1,0 +1,356 @@
+[gd_scene format=3 uid="uid://bjtunhnpq3hld"]
+
+[ext_resource type="Texture2D" uid="uid://crub5hfqontjx" path="res://icon.svg" id="1_byi80"]
+[ext_resource type="Script" uid="uid://b0booe1hhg2k7" path="res://scenes/enemies/superCoolBoss/super_cool_boss.gd" id="1_fl5py"]
+[ext_resource type="Script" uid="uid://dl6eom082crip" path="res://scripts/hitbox.gd" id="2_esgye"]
+[ext_resource type="Texture2D" uid="uid://bcqi0dxcldeft" path="res://assets/boss/anim boss/attack 1/frame0000.png" id="2_wmo2s"]
+[ext_resource type="Texture2D" uid="uid://dl7vm5x5y58no" path="res://assets/boss/anim boss/idle-run/frame0000.png" id="3_0vuhe"]
+[ext_resource type="Texture2D" uid="uid://cp24w1q5dvj1u" path="res://assets/boss/anim boss/attack 1/frame0001.png" id="3_04ra2"]
+[ext_resource type="Script" uid="uid://cq0qe3lhrmeco" path="res://scripts/state_machine.gd" id="4_4h52x"]
+[ext_resource type="Texture2D" uid="uid://deriln0fla22p" path="res://assets/boss/anim boss/idle-run/frame0001.png" id="4_a41le"]
+[ext_resource type="Texture2D" uid="uid://drip34ojwgs40" path="res://assets/boss/anim boss/attack 1/frame0002.png" id="4_aeo0t"]
+[ext_resource type="Script" uid="uid://dpew030car50w" path="res://scenes/enemies/superCoolBoss/telegraph_state.gd" id="5_4h52x"]
+[ext_resource type="Texture2D" uid="uid://bt4f635spkqpn" path="res://assets/boss/anim boss/attack 1/frame0003.png" id="5_hy08t"]
+[ext_resource type="Texture2D" uid="uid://ddbbuk7eaebf5" path="res://assets/boss/anim boss/idle-run/frame0002.png" id="5_scpt2"]
+[ext_resource type="Texture2D" uid="uid://ca6834ggdhpk6" path="res://assets/boss/anim boss/attack 1/frame0004.png" id="6_mxks5"]
+[ext_resource type="Script" uid="uid://rtu2ass4um7m" path="res://scenes/enemies/superCoolBoss/slam_state.gd" id="6_ncple"]
+[ext_resource type="Texture2D" uid="uid://d4egyxlylbrl7" path="res://assets/boss/anim boss/idle-run/frame0003.png" id="6_wup1g"]
+[ext_resource type="Texture2D" uid="uid://b8yhu2j0n7dlh" path="res://assets/boss/anim boss/attack 1/frame0005.png" id="7_3sexd"]
+[ext_resource type="Script" uid="uid://djwxpihubg4ho" path="res://scenes/enemies/superCoolBoss/stomp_state.gd" id="7_6ou8a"]
+[ext_resource type="PackedScene" uid="uid://rovqacxinaa" path="res://scenes/game_scene/bullets/shockwave.tscn" id="8_eja1i"]
+[ext_resource type="Script" uid="uid://drk78to51ogq4" path="res://scenes/enemies/superCoolBoss/idle_state.gd" id="8_qq8eo"]
+[ext_resource type="Texture2D" uid="uid://dc67orfulpcu4" path="res://assets/boss/anim boss/attack 1/frame0006.png" id="8_vanh4"]
+[ext_resource type="Texture2D" uid="uid://c5icjisx3ddga" path="res://assets/boss/anim boss/attack 1/frame0007.png" id="9_fqqpt"]
+[ext_resource type="Texture2D" uid="uid://bqr0811gk7l2u" path="res://assets/boss/anim boss/attack 1/frame0008.png" id="10_6hdp0"]
+[ext_resource type="Script" uid="uid://dfylm7cdy8o51" path="res://scenes/enemies/superCoolBoss/dormant_state.gd" id="10_12p0f"]
+[ext_resource type="Texture2D" uid="uid://do4b38piuuide" path="res://assets/boss/anim boss/attack 1/frame0009.png" id="11_dw14i"]
+[ext_resource type="Texture2D" uid="uid://x13rtuxv77oo" path="res://assets/boss/anim boss/attack 2/frame0000.png" id="12_3sexd"]
+[ext_resource type="Texture2D" uid="uid://bb4m858nrrfad" path="res://assets/boss/anim boss/attack 2/frame0001.png" id="13_vanh4"]
+[ext_resource type="Texture2D" uid="uid://bk41wja5wght4" path="res://assets/boss/anim boss/attack 2/frame0002.png" id="14_fqqpt"]
+[ext_resource type="Texture2D" uid="uid://ca8cihanv24sp" path="res://assets/boss/anim boss/attack 2/frame0003.png" id="15_6hdp0"]
+[ext_resource type="Texture2D" uid="uid://dni2fcuugnb71" path="res://assets/boss/anim boss/attack 2/frame0004.png" id="16_dw14i"]
+[ext_resource type="Script" uid="uid://bc4xv11bpwb6c" path="res://scenes/enemies/superCoolBoss/ink_attack_state.gd" id="30_ekrvh"]
+[ext_resource type="Script" uid="uid://cenvhwajcgfuu" path="res://scenes/enemies/superCoolBoss/walk_state.gd" id="30_ja2lk"]
+[ext_resource type="Texture2D" uid="uid://4ch3yiijrgb5" path="res://assets/boss/anim boss/attack 2/ink/frame0000.png" id="30_uuloq"]
+[ext_resource type="Texture2D" uid="uid://iqwkrtfpehu4" path="res://assets/boss/anim boss/attack 2/ink/frame0001.png" id="31_b2y25"]
+[ext_resource type="Texture2D" uid="uid://db0lufjxcdjt3" path="res://assets/boss/anim boss/attack 2/ink/frame0002.png" id="32_ja2lk"]
+[ext_resource type="Script" uid="uid://cwj0ehq4mp4yr" path="res://scenes/enemies/superCoolBoss/phase_transition_state.gd" id="32_sw5r8"]
+[ext_resource type="Texture2D" uid="uid://u3c7f1751qiv" path="res://assets/boss/anim boss/attack 2/ink/frame0003.png" id="33_ekrvh"]
+[ext_resource type="Texture2D" uid="uid://h3d80xfxj5ci" path="res://assets/boss/anim boss/attack 2/ink/frame0004.png" id="34_sw5r8"]
+[ext_resource type="Texture2D" uid="uid://3dxxukl8bsbu" path="res://assets/boss/anim boss/attack 2/ink/frame0005.png" id="35_c0ity"]
+[ext_resource type="Texture2D" uid="uid://ir2srjgwwpts" path="res://assets/boss/anim boss/attack 2/ink/frame0006.png" id="36_rl6uv"]
+[ext_resource type="Script" uid="uid://b08tq18cyd2ii" path="res://scenes/enemies/contact_damage.gd" id="37_b2y25"]
+
+[sub_resource type="Shader" id="Shader_ekrvh"]
+code = "shader_type canvas_item;
+
+uniform vec4 flash_color : source_color;
+uniform float flash_value : hint_range(0.0, 1.0, 0.1);
+
+void fragment() {
+	vec4 texture_color = texture(TEXTURE, UV);
+	COLOR = mix(texture_color, flash_color, flash_value);
+	COLOR.a = texture_color.a;
+}	"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sw5r8"]
+shader = SubResource("Shader_ekrvh")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = 0.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fl5py"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wmo2s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_04ra2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_aeo0t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_hy08t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_mxks5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_3sexd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_vanh4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_fqqpt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_6hdp0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_dw14i")
+}],
+"loop": 0,
+"name": &"attack1",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_3sexd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_vanh4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_fqqpt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_6hdp0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_dw14i")
+}],
+"loop": 0,
+"name": &"attack2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_byi80")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_0vuhe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_a41le")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_scpt2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_wup1g")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 6.0
+}]
+
+[sub_resource type="Animation" id="Animation_ln3h3"]
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_uygh0"]
+resource_name = "hit_animation"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.083333336, -0.16666667, 0, 0, 0, -0.08888888, 0.16666667, 0, 0),
+"times": PackedFloat32Array(0, 0.23333333, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_aa45k"]
+resource_name = "hit_animation_enemy"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1.0, 0.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ekrvh"]
+_data = {
+&"RESET": SubResource("Animation_ln3h3"),
+&"hit_animation": SubResource("Animation_uygh0"),
+&"hit_animation_enemy": SubResource("Animation_aa45k")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4h52x"]
+size = Vector2(492, 760)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qq8eo"]
+size = Vector2(1170, 514)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ja2lk"]
+size = Vector2(953, 1145)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("30_uuloq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_b2y25")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_ja2lk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_ekrvh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_sw5r8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_c0ity")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_rl6uv")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 9.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(1427, 683)
+
+[node name="SuperCoolBoss" type="CharacterBody2D" unique_id=1491804352]
+script = ExtResource("1_fl5py")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=890219416]
+material = SubResource("ShaderMaterial_sw5r8")
+sprite_frames = SubResource("SpriteFrames_fl5py")
+animation = &"attack1"
+frame = 9
+frame_progress = 1.0
+
+[node name="FlashAnimation" type="AnimationPlayer" parent="AnimatedSprite2D" unique_id=1146747728]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_ekrvh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1182958374]
+position = Vector2(3, 116)
+shape = SubResource("RectangleShape2D_4h52x")
+
+[node name="SlamHitbox" type="Area2D" parent="." unique_id=1242596887 node_paths=PackedStringArray("damage_source")]
+position = Vector2(-2040, 922)
+script = ExtResource("2_esgye")
+damage_source = NodePath("..")
+metadata/_custom_type_script = "uid://dl6eom082crip"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SlamHitbox" unique_id=541617730]
+position = Vector2(1220, -493)
+shape = SubResource("RectangleShape2D_qq8eo")
+debug_color = Color(0.977469, 0, 0.40755582, 0.41960785)
+
+[node name="ShockwaveMarker" type="Marker2D" parent="." unique_id=2088781245]
+position = Vector2(-1022, 431)
+
+[node name="StateMachine" type="Node" parent="." unique_id=158490625 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_4h52x")
+initial_state = NodePath("DormantState")
+metadata/_custom_type_script = "uid://cq0qe3lhrmeco"
+
+[node name="TelegraphState" type="Node" parent="StateMachine" unique_id=1527548083]
+script = ExtResource("5_4h52x")
+
+[node name="SlamState" type="Node" parent="StateMachine" unique_id=1287639327]
+script = ExtResource("6_ncple")
+slam_speed = 1600.0
+slam_duration = 4.0
+windup_time = 0.2
+
+[node name="StompState" type="Node" parent="StateMachine" unique_id=464830210]
+script = ExtResource("7_6ou8a")
+shockwave_scene = ExtResource("8_eja1i")
+
+[node name="IdleState" type="Node" parent="StateMachine" unique_id=1515428040]
+script = ExtResource("8_qq8eo")
+idle_duration = 6.0
+
+[node name="DormantState" type="Node" parent="StateMachine" unique_id=2104587573]
+script = ExtResource("10_12p0f")
+
+[node name="InkAttackState" type="Node" parent="StateMachine" unique_id=2097836137]
+script = ExtResource("30_ekrvh")
+ink_duration = null
+ink_obscure_duration = null
+base_recovery = null
+
+[node name="WalkState" type="Node" parent="StateMachine" unique_id=690825563]
+script = ExtResource("30_ja2lk")
+
+[node name="PhaseTransitionState" type="Node" parent="StateMachine" unique_id=1861934790]
+script = ExtResource("32_sw5r8")
+shockwave_scene = ExtResource("8_eja1i")
+
+[node name="ContactDamage" type="Area2D" parent="." unique_id=228854897]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("37_b2y25")
+metadata/_custom_type_script = "uid://b08tq18cyd2ii"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactDamage" unique_id=1697175811]
+position = Vector2(-1, 53)
+shape = SubResource("RectangleShape2D_ja2lk")
+debug_color = Color(0.9540971, 8.663535e-07, 0.5526925, 0.41960785)
+
+[node name="Ink" type="Node2D" parent="." unique_id=389452497]
+
+[node name="InkArea" type="Area2D" parent="Ink" unique_id=1127110344]
+visible = false
+position = Vector2(-1239, 52)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("2_esgye")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Ink/InkArea" unique_id=1694273586]
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+frame_progress = 0.821366
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ink/InkArea" unique_id=710592394]
+position = Vector2(67.5, 160.5)
+shape = SubResource("RectangleShape2D_g4v7s")
+debug_color = Color(0.28431106, 0.0009732038, 0.60536206, 0.41960785)
+
+[node name="InkArea2" type="Area2D" parent="Ink" unique_id=351686542]
+visible = false
+position = Vector2(1572, 123)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("2_esgye")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Ink/InkArea2" unique_id=452135717]
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+frame_progress = 0.821366
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ink/InkArea2" unique_id=1764397394]
+position = Vector2(67.5, 160.5)
+shape = SubResource("RectangleShape2D_g4v7s")
+debug_color = Color(0.28431106, 0.0009732038, 0.60536206, 0.41960785)

@@ -51,7 +51,7 @@ func play_boss_music(duration: float = 1.0) -> void:
     audio_stream.play()
 
     var fade_in = create_tween()
-    fade_in.tween_property(audio_stream, "volume_db", 0.0, duration * 2) \
+    fade_in.tween_property(audio_stream, "volume_db", -40.0, duration * 2) \
         .set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 
 

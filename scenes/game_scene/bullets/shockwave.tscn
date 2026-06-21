@@ -13,8 +13,8 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("3_55nm5")
 }],
-"loop": 1,
-"name": &"default",
+"loop": 0,
+"name": &"hit",
 "speed": 8.0
 }]
 
@@ -23,14 +23,19 @@ size = Vector2(889, 196)
 
 [node name="Shockwave" type="Area2D" unique_id=101009862]
 collision_layer = 4
-collision_mask = 2
+collision_mask = 3
 script = ExtResource("1_fyq0j")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1888401017]
 position = Vector2(0, -374)
 sprite_frames = SubResource("SpriteFrames_cbyi6")
-frame_progress = 0.7380223
+animation = &"hit"
+frame = 1
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=649417839]
 position = Vector2(1.5, 14)
 shape = SubResource("RectangleShape2D_un41c")
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=928436197]
+target_position = Vector2(-1000, 0)

@@ -12,8 +12,58 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jnbjt")
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1331123693]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.008231887, 0.05217375, 0.12118084, 1)
+
 [node name="CreditsLabel" parent="." unique_id=899392894 instance=ExtResource("2_35kdw")]
 unique_name_in_owner = true
 layout_mode = 1
+text = "[font_size=48]Collaborators[/font_size]
+
+[font_size=32]Development Team[/font_size]
+
+[font_size=24] SAD Team [/font_size]
+
+[b]TBrush123[/b]
+Lead Programmer, Level & Game Designer
+
+[b]Woll4ri[/b]
+Lead Artist, SFX & Music Designer, SADA Monster Designer
+
+[b]Lyaguha[/b]
+Main Menu Artist, Code Assistant, SADA Human Designer
+
+[img=80]res://assets/misc/sad team logo (1).png[/img]
+
+[font_size=48]Game Jam[/font_size]
+
+[font_size=24]Godot Wild Jam[/font_size]
+Author: [url=https://godotwildjam.com]Godot Wild Jam #94[/url]
+[img=80]res://assets/misc/Wildling_head_only.svg[/img]
+
+[font_size=24]Theme & Logo[/font_size]
+Author: [Theme Creator / Organizer]
+Source: [Theme Announcement URL]
+
+[font_size=48]Collaborators[/font_size]
+
+[font_size=24]Godot Game Template[/font_size]
+Author: Marek Belski and contributors
+Source: github: Godot-Game-Template
+License: MIT License
+
+[font_size=48]Tools[/font_size]
+
+[font_size=24]Godot[/font_size]
+Author: Juan Linietsky, Ariel Manzur, and contributors
+Source: godotengine.org
+License: MIT License
+"
 fit_content = false
 scroll_active = true

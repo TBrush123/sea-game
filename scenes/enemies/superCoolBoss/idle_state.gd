@@ -33,12 +33,15 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to("WalkState")
 		return
 	
-	if dist < 1000:
-		_telegraph("SlamState")
-	elif dist < 2000:
-		_telegraph("InkAttackState")
+	elif dist < 1000:
+		var rand_move = randi_range(1, 2)
+		match rand_move:
+			1:
+				_telegraph("InkAttackState")
+			2:
+				_telegraph("StompState")
 	else:
-		_telegraph("StompState")
+		_telegraph("SlamState")
 
 func _telegraph(next_state: String) -> void:
 	state_machine.states["TelegraphState"].next_state = next_state

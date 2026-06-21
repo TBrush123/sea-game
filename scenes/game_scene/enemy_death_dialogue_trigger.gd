@@ -14,6 +14,7 @@ func _ready() -> void:
     player_ref = get_tree().get_first_node_in_group("player")
 
 func _on_enemy_died() -> void:
+    await get_tree().create_timer(1.0).timeout
     if player_ref and is_instance_valid(player_ref):
         player_ref.set_movement_locked(true)
         player_ref.state_machine.transition_to("IdleState")
